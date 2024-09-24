@@ -12,7 +12,7 @@ const Login = () => {
 
 
   return (
-    <div className="lg:w-[40%] mx-auto bg-black rounded-xl shadow-lg pt-1">
+    <div className="lg:w-[35%] mx-auto bg-black rounded-xl shadow-lg pt-1">
       <p className="text-4xl font-semibold my-12 text-center text-white ">Login</p>
       <form
         className=" shadow-md rounded px-12 pt-6 pb-8 mb-4"
@@ -63,7 +63,7 @@ const Login = () => {
         <p className="text-red-600 text-center font-bold">{error}</p>
         <div className="flex items-center justify-center mt-8">
           <button
-            className="bg-gradient-to-r from-blue-500 to-green-400 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline w-full"
+            className="bg-gradient-to-r from-pink-400 to-orange-600 hover:from-orange-500 hover:to-pink-400 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline w-full"
             type="submit"
           >
             Login
@@ -75,7 +75,7 @@ const Login = () => {
 
         <div className="flex items-center justify-center">
           <Link to="/register"
-            className="bg-gray-800 text-white text-center font-bold py-2  rounded focus:outline-none focus:shadow-outline mt-5 w-full"
+            className="bg-gray-800 hover:bg-gray-700 text-white text-center font-bold py-2  rounded focus:outline-none focus:shadow-outline mt-5 w-full"
             type="submit"
           >
             Create a new account
