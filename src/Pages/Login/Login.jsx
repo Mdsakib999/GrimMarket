@@ -13,10 +13,10 @@ const Login = () => {
 
   return (
     <div className="lg:w-[40%] mx-auto bg-black rounded-xl shadow-lg pt-1">
-      <p className="text-4xl font-semibold my-12 text-center text-white ">Login</p>
+      <p className="text-4xl font-semibold my-12 text-center text-white  text-shadow-custom">Login</p>
       <form
         className=" shadow-md rounded px-12 pt-6 pb-8 mb-4"
-        
+
       >
         <div className="mb-4">
           <label
@@ -31,7 +31,7 @@ const Login = () => {
             name="text"
             placeholder="User Name"
             id="text"
-            
+
           />
         </div>
 
@@ -44,13 +44,13 @@ const Login = () => {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-            type={show? "password" : "text"}
+            type={show ? "password" : "text"}
             name="password"
             id="password"
-            
+            placeholder="Enter Your Password"
           />
           <div className="cursor-pointer absolute right-3 top-10" onClick={() => setShow(!show)}>
-            {show? <FaEye/> : <FaEyeSlash/>}
+            {show ? <FaEye /> : <FaEyeSlash />}
           </div>
 
           {/* {errors.password && (

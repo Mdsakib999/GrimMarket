@@ -1,10 +1,13 @@
-import Login from "../Login";
-import Register from "../Register";
+// import Login from "../Login";
+// import Register from "../Register";
+
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 const Home = () => {
     return (
         <div>
-            <h1 className="">hi</h1>
+            {/* <h1 className="">hi</h1> */}
             <Login></Login>
 
             <Register></Register>

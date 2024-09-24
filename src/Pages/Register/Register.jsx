@@ -14,7 +14,7 @@ const Register = () => {
 
   return (
     <div className="lg:w-[40%] mx-auto bg-black rounded-xl text-white">
-      <h1 className="text-4xl font-semibold my-12 text-center pt-8">
+      <h1 className="text-4xl font-semibold my-12 text-center pt-8 text-shadow-custom">
         Register
       </h1>
       <form
@@ -37,7 +37,7 @@ const Register = () => {
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label
             className="block text-sm font-bold mb-2"
             htmlFor="email"
@@ -52,8 +52,8 @@ const Register = () => {
             id="email"
 
           />
-          
-        </div>
+
+        </div> */}
 
         <div className="mb-4 relative">
           <label
@@ -68,19 +68,19 @@ const Register = () => {
             name="password"
             placeholder="Enter Your Password"
             id="password"
-            // {...register("password", {
-            //   required: true,
-            //   minLength: 6,
-            //   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])(?=.*[0-9])/,
-            // })}
+          // {...register("password", {
+          //   required: true,
+          //   minLength: 6,
+          //   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])(?=.*[0-9])/,
+          // })}
           />
           <div
             className="cursor-pointer absolute right-3 top-10"
             onClick={() => setShow(!show)}
           >
-            {show? <FaEye/> : <FaEyeSlash/>}
+            {show ? <FaEye /> : <FaEyeSlash />}
           </div>
-          
+
           {/* {errors.password?.type === "pattern" && (
             <span className="text-red-500 text-xs italic">
               Should have one upper case, one lower case, one special character
@@ -110,7 +110,7 @@ const Register = () => {
           </Link>
         </div>
       </form>
- 
+
     </div>
   );
 };
