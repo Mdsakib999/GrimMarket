@@ -1,13 +1,16 @@
+import ProductsUpdates from "../../Components/News/ProductsUpdates";
 import Login from "../Login";
+import Navbar from "../Navbar/Navbar";
 import Register from "../Register";
+import Sidebar from "../Side bar/Sidebar";
 
 const Home = () => {
     return (
         <div>
-            <h1 className="">hi</h1>
-            <Login></Login>
+            <Navbar></Navbar>
+            <Sidebar/>
 
-            <Register></Register>
+            <ProductsUpdates></ProductsUpdates>
         </div>
     );
 };
