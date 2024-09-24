@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
 
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [show, setShow] = useState(true);
 
 
@@ -14,7 +14,7 @@ const Register = () => {
 
   return (
     <div className="lg:w-[40%] mx-auto bg-black rounded-xl text-white">
-      <h1 className="text-4xl font-semibold my-12 text-center pt-8 text-shadow-custom">
+      <h1 className="text-4xl font-semibold my-12 text-center pt-8">
         Register
       </h1>
       <form
@@ -37,7 +37,7 @@ const Register = () => {
           />
         </div>
 
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <label
             className="block text-sm font-bold mb-2"
             htmlFor="email"
@@ -53,7 +53,7 @@ const Register = () => {
 
           />
 
-        </div> */}
+        </div>
 
         <div className="mb-4 relative">
           <label

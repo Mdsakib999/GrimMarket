@@ -1,16 +1,14 @@
-// import Login from "../Login";
-// import Register from "../Register";
-
-import Login from "../Login/Login";
-import Register from "../Register/Register";
+import ProductsUpdates from "../../Components/News/ProductsUpdates";
+import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Side bar/Sidebar";
 
 const Home = () => {
     return (
         <div>
-            {/* <h1 className="">hi</h1> */}
-            <Login></Login>
+            <Navbar></Navbar>
+            <Sidebar />
 
-            <Register></Register>
+            <ProductsUpdates></ProductsUpdates>
         </div>
     );
 };
