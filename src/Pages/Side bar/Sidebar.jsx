@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { BsArrowRightSquare } from "react-icons/bs";
-const Sidebar = () => {
-  // State to track the active link
-  const [activeLink, setActiveLink] = useState(null);
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { BsArrowRightSquare, BsArrowDownSquare } from "react-icons/bs";
+import { navData } from "../../utils/navData";
 
-  // Function to handle click and set active state
-  const handleClick = (link) => {
-    setActiveLink(link);
+const Sidebar = () => {
+  // State to track the active parent link and child visibility
+  const [activeLink, setActiveLink] = useState(null);
+  const [openParent, setOpenParent] = useState(null);
+
+  // Function to toggle parent links and show children
+  const toggleParent = (parent) => {
+    setOpenParent((prevParent) => (prevParent === parent ? null : parent));
   };
 
   return (
@@ -16,60 +19,80 @@ const Sidebar = () => {
         <p className="text-gray-300 font-semibold text-lg ps-3">General</p>
 
         {/* News Item */}
-        <li
-          onClick={() => handleClick("news")}
-          className={`py-2 px-4 flex items-center justify-between cursor-pointer ${
-            activeLink === "news"
-              ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-              : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500 "
-          }`}
-        >
-          <Link to="/news">News</Link>
-          <BsArrowRightSquare />
+        <li className="py-2 px-4">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "flex py-3 ps-2 items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
+                : "flex py-3 ps-2  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+            }
+            onClick={() => setActiveLink("news")}
+          >
+            News
+          </NavLink>
         </li>
 
         <p className="text-gray-300 font-semibold text-lg mt-4 ps-3">Categories</p>
 
-        {/* Credit Cards Item */}
-        <li
-          onClick={() => handleClick("credit-cards")}
-          className={`py-2 px-4 flex items-center justify-between cursor-pointer ${
-            activeLink === "credit-cards"
-              ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-              : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500 "
-          }`}
-        >
-          <Link to="/">Credit Cards</Link>
-          <BsArrowRightSquare />
-        </li>
+        {/* Render Nav Data */}
+        <div>
+          {navData.map((item, index) => (
+            <div key={index}>
+              {/* Parent Link */}
+              <li className="py-2 px-4">
+                <div
+                  onClick={() => toggleParent(item.link)}
+                  className={`flex py-3 ps-2 pe-2 items-center justify-between cursor-pointer ${openParent === item.link
+                    ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
+                    : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                    }`}
+                >
+                  <NavLink
+                    to={item.link}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-orange-500"
+                        : "text-white"
+                    }
+                    onClick={() => setActiveLink(item.link)}
+                  >
+                    {item.title}
+                  </NavLink>
 
-        {/* Online Bankings Item */}
-        <li
-          onClick={() => handleClick("online-bankings")}
-          className={`py-2 px-4 flex items-center justify-between cursor-pointer ${
-            activeLink === "online-bankings"
-              ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-              : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500 "
-          }`}
-        >
-          <Link to="/online-bankings">Online Bankings</Link>
-          <BsArrowRightSquare />
-        </li>
+                  {item.children ? (
+                    openParent === item.link ? (
+                      <BsArrowDownSquare />
+                    ) : (
+                      <BsArrowRightSquare />
+                    )
+                  ) : null}
+                </div>
+              </li>
 
-        {/* Accounts Item */}
-        <li
-          onClick={() => handleClick("accounts")}
-          className={`py-2 px-4 flex items-center justify-between cursor-pointer ${
-            activeLink === "accounts"
-              ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-              : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500 "
-          }`}
-        >
-          <Link to="/accounts">Accounts</Link>
-          <BsArrowRightSquare />
-        </li>
-
-        {/* Add more sidebar links */}
+              {/* Children Links (visible if parent is clicked) */}
+              {item.children && openParent === item.link && (
+                <ul className="pl-8">
+                  {item.children.map((child, childIndex) => (
+                    <li key={childIndex} className="py-2 px-4">
+                      <NavLink
+                        to={child.link}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "flex items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
+                            : "flex  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                        }
+                        onClick={() => setActiveLink(child.link)}
+                      >
+                        {child.title}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
       </ul>
     </aside>
   );

@@ -5,8 +5,7 @@ import Sidebar from "../Side bar/Sidebar";
 const Home = () => {
     return (
         <div>
-            <Navbar></Navbar>
-            <Sidebar />
+
 
             <ProductsUpdates></ProductsUpdates>
         </div>
