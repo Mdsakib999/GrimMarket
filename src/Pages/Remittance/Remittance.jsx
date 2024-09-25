@@ -1,5 +1,5 @@
 
-const Keys = () => {
+const Remittance = () => {
     return (
         <div>
 
@@ -7,4 +7,4 @@ const Keys = () => {
     );
 };
 
-export default Keys;
+export default Remittance;

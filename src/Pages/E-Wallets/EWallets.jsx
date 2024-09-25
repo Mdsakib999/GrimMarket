@@ -1,5 +1,5 @@
 
-const DynamicKeys = () => {
+const EWallets = () => {
     return (
         <div>
 
@@ -7,4 +7,4 @@ const DynamicKeys = () => {
     );
 };
 
-export default DynamicKeys;
+export default EWallets;

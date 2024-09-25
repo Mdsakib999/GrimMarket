@@ -1,90 +1,156 @@
 export const navData = [
+
     {
         id: "1",
-        title: 'Credit Cards',
-        link: '/credit-cards',
-        children: [
-            {
-                id: '1',
-                title: 'Dumpz',
-                link: '/credit-cards/dumpz'
-            }
-        ]
-    },
-    {
-        id: "2",
-        title: 'Online Banking',
-        link: '/online-banking',
-
-    },
-    {
-        id: "3",
         title: 'Accounts',
         link: '/accounts',
         children: [
             {
+                id: '11',
+                title: 'Business wise',
+                link: '/accounts/business-wise'
+            },
+            {
+                id: '12',
+                title: 'personal Wise',
+                link: '/accounts/personal-wise'
+            },
+        ]
+    },
+    {
+        id: "2",
+        title: 'Crypto Exchanger',
+        link: '/crypto-exchanger',
+        children: [
+            {
+                id: '21',
+                title: 'NoOnes',
+                link: '/crypto-exchanger/no-ones'
+            },
+            {
+                id: '22',
+                title: 'Bybit',
+                link: '/crypto-exchanger/bybit'
+            },
+            {
+                id: '23',
+                title: 'Coinbase',
+                link: '/crypto-exchanger/coinbase'
+            },
+            {
+                id: '24',
+                title: 'Kucoin',
+                link: '/crypto-exchanger/kucoin'
+            },
+            {
+                id: '25',
+                title: 'Paybis',
+                link: '/crypto-exchanger/paybis'
+            },
+            {
+                id: '26',
+                title: 'Paxful',
+                link: '/crypto-exchanger/paxful'
+            },
+            {
+                id: '27',
+                title: 'Okx',
+                link: '/crypto-exchanger/okx'
+            },
+            {
+                id: '28',
+                title: 'Bitget',
+                link: '/crypto-exchanger/bitget'
+            },
+            {
+                id: '29',
+                title: 'Crypto.com',
+                link: '/crypto-exchanger/crypto-com'
+            },
+            {
+                id: '30',
+                title: 'Get.io',
+                link: '/crypto-exchanger/get-io'
+            }
+
+        ]
+    },
+    {
+        id: "3",
+        title: 'E-Wallets',
+        link: '/e-wallets',
+        children: [
+            {
                 id: '31',
-                title: 'Filling',
-                link: '/accounts/filling'
+                title: 'Skrill',
+                link: '/e-wallets/skrill'
             },
             {
                 id: '32',
-                title: 'Cashing',
-                link: '/accounts/cashing'
+                title: 'Neteller',
+                link: '/e-wallets/neteller'
             },
             {
                 id: '33',
-                title: 'Shop',
-                link: '/accounts/shop'
+                title: 'Perfect Money',
+                link: '/e-wallets/perfect-money'
             },
             {
                 id: '34',
-                title: 'E-mails',
-                link: '/accounts/emails'
+                title: 'Payoneer',
+                link: '/e-wallets/payoneer'
             },
+            {
+                id: '35',
+                title: 'Payeer',
+                link: '/e-wallets/payeer'
+            },
+            {
+                id: '36',
+                title: 'Cash App',
+                link: '/e-wallets/cash-app'
+            }
         ]
     },
 
     {
         id: "4",
-        title: 'Bankdrops',
-        link: '/bankdrop',
+        title: 'Remittance',
+        link: '/remittance',
         children: [
             {
                 id: '41',
-                title: 'Exchangers',
-                link: '/bankdrop/exchangers'
+                title: 'WorldRemit',
+                link: '/remittance/worldremit'
             },
             {
                 id: '42',
-                title: 'Virtual Drops',
-                link: '/bankdrop/virtual-drops'
+                title: 'Remitly',
+                link: '/remittance/remitly'
             },
             {
                 id: '43',
-                title: 'Physical Drops',
-                link: '/bankdrop/physical_drops'
+                title: 'Sendwave',
+                link: '/remittance/sendwave'
             },
-
-        ]
-    },
-
-    {
-        id: "5",
-        title: 'Keys',
-        link: '/keys',
-        children: [
             {
-                id: '11',
-                title: 'Gift Cards',
-                link: '/credit-cards/gift-cards'
+                id: '44',
+                title: 'TransferGo',
+                link: '/remittance/transfergo'
+            },
+            {
+                id: '45',
+                title: 'Instarem',
+                link: '/remittance/instarem'
+            },
+            {
+                id: '46',
+                title: 'Western Union',
+                link: '/remittance/western-union'
             }
+
+
         ]
     },
-    {
-        id: "6",
-        title: 'eSim',
-        link: '/eSim',
 
-    },
 ] 
