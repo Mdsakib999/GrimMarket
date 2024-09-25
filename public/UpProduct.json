@@ -1,0 +1,73 @@
+[
+    {
+      "icon": "bank_icon.png",
+      "title": "Online Banking",
+      "category": "Accounts",
+      "quantity": 120,
+      "date": "2024-09-24"
+    },
+    {
+      "icon": "savings_icon.png",
+      "title": "Savings Account",
+      "category": "Accounts",
+      "quantity": 150,
+      "date": "2024-09-23"
+    },
+    {
+      "icon": "loan_icon.png",
+      "title": "Personal Loan",
+      "category": "Loans",
+      "quantity": 45,
+      "date": "2024-09-22"
+    },
+    {
+      "icon": "credit_card_icon.png",
+      "title": "Credit Card",
+      "category": "Cards",
+      "quantity": 75,
+      "date": "2024-09-21"
+    },
+    {
+      "icon": "mobile_banking_icon.png",
+      "title": "Mobile Banking",
+      "category": "Digital",
+      "quantity": 200,
+      "date": "2024-09-20"
+    },
+    {
+      "icon": "fixed_deposit_icon.png",
+      "title": "Fixed Deposit",
+      "category": "Accounts",
+      "quantity": 95,
+      "date": "2024-09-19"
+    },
+    {
+      "icon": "mortgage_icon.png",
+      "title": "Home Mortgage",
+      "category": "Loans",
+      "quantity": 30,
+      "date": "2024-09-18"
+    },
+    {
+      "icon": "insurance_icon.png",
+      "title": "Life Insurance",
+      "category": "Insurance",
+      "quantity": 110,
+      "date": "2024-09-17"
+    },
+    {
+      "icon": "investment_icon.png",
+      "title": "Investment Portfolio",
+      "category": "Investments",
+      "quantity": 60,
+      "date": "2024-09-16"
+    },
+    {
+      "icon": "debit_card_icon.png",
+      "title": "Debit Card",
+      "category": "Cards",
+      "quantity": 130,
+      "date": "2024-09-15"
+    }
+  ]
+  

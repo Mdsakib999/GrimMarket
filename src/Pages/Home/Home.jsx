@@ -1,3 +1,4 @@
+import ProductsUpdates from "../../Components/News/ProductsUpdates";
 import Login from "../Login";
 import Navbar from "../Navbar/Navbar";
 import Register from "../Register";
@@ -7,11 +8,9 @@ const Home = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Sidebar></Sidebar>
-            <h1 className="">hi</h1>
-            <Login></Login>
+            <Sidebar/>
 
-            <Register></Register>
+            <ProductsUpdates></ProductsUpdates>
         </div>
     );
 };
