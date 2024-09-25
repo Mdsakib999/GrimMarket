@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../Pages/Navbar/Navbar";
 import Sidebar from "../Pages/Side bar/Sidebar";
+import { Toaster } from 'react-hot-toast';
 
 const MainLayout = () => {
     return (
@@ -10,7 +11,7 @@ const MainLayout = () => {
             <div className="ml-[260px] mt-14 px-3">
                 <Outlet />
             </div>
-
+            <Toaster />
         </div>
     );
 };
