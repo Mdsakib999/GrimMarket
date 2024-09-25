@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="bg-gray-900 text-white w-64 h-full fixed top-14 left-0">
+    <aside className="bg-gray-900 text-white w-64 h-full overflow-y-auto fixed top-14 left-0">
       <ul>
         <p className="text-gray-300 font-semibold text-lg ps-3">General</p>
 
@@ -43,7 +43,7 @@ const Sidebar = () => {
               <li className="py-2 px-4">
                 <div
                   onClick={() => toggleParent(item.link)}
-                  className={`flex py-3 ps-2 pe-2 items-center justify-between cursor-pointer ${openParent === item.link
+                  className={`flex py-2 ps-2 pe-2 items-center justify-between cursor-pointer ${openParent === item.link
                     ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
                     : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
                     }`}
@@ -92,6 +92,37 @@ const Sidebar = () => {
               )}
             </div>
           ))}
+        </div>
+        <div className="mb-24">
+          <p className="text-gray-300 font-semibold text-lg ps-3">Help</p>
+
+          {/* News Item */}
+          <li className="py-2 block px-4">
+            <NavLink
+              to="/support"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex py-3 ps-2 items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
+                  : "flex py-3 ps-2  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+              }
+              onClick={() => setActiveLink("support")}
+            >
+              Support
+            </NavLink>
+          </li>
+          <li className="py-2 block px-4">
+            <NavLink
+              to="/faq"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex py-3 ps-2 items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
+                  : "flex py-3 ps-2  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+              }
+              onClick={() => setActiveLink("faq")}
+            >
+              FAQ
+            </NavLink>
+          </li>
         </div>
       </ul>
     </aside>
