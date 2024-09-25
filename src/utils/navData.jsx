@@ -5,7 +5,7 @@ export const navData = [
         link: '/credit-cards',
         children: [
             {
-                id: '11',
+                id: '1',
                 title: 'Dumpz',
                 link: '/credit-cards/dumpz'
             }
