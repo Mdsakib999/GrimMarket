@@ -2,7 +2,7 @@ import React from 'react';
 
 const News = () => {
     return (
-        <div>
+        <div className=' h-full'>
             This is news page
         </div>
     );
