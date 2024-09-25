@@ -27,6 +27,7 @@ const ProductsUpdates = () => {
                         <p className='text-lg text-gray-400'>{upData.category}</p>
                     </div>
                 </div>
+                {/* div pro text style */}
                <div className='flex items-center gap-x-8'>
                <p className='bg-green-600 bg-opacity-10 px-3 py-1 text-green-600 rounded-md'>{upData.quantity} pcs</p>
                <p className='bg-yellow-200 bg-opacity-10 px-3 py-1 text-yellow-300 rounded-md'>{upData.date}</p>
