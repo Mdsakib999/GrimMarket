@@ -44,4 +44,47 @@ export const navData = [
             },
         ]
     },
+
+    {
+        id: "4",
+        title: 'Bankdrops',
+        link: '/bankdrop',
+        children: [
+            {
+                id: '41',
+                title: 'Exchangers',
+                link: '/bankdrop/exchangers'
+            },
+            {
+                id: '42',
+                title: 'Virtual Drops',
+                link: '/bankdrop/virtual-drops'
+            },
+            {
+                id: '43',
+                title: 'Physical Drops',
+                link: '/bankdrop/physical_drops'
+            },
+
+        ]
+    },
+
+    {
+        id: "5",
+        title: 'Keys',
+        link: '/keys',
+        children: [
+            {
+                id: '11',
+                title: 'Gift Cards',
+                link: '/credit-cards/gift-cards'
+            }
+        ]
+    },
+    {
+        id: "6",
+        title: 'eSim',
+        link: '/eSim',
+
+    },
 ] 
