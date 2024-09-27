@@ -8,7 +8,7 @@ const MainLayout = () => {
         <div className="thin-scrollbar">
             <Navbar></Navbar>
             <Sidebar />
-            <div className="ml-[260px] mt-14 px-3">
+            <div className="ml-[260px] mt-16 px-3">
                 <Outlet />
             </div>
             <Toaster />

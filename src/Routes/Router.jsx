@@ -13,6 +13,7 @@ import EWallets from "../Pages/E-Wallets/EWallets";
 import DynamicEWallets from "../Pages/E-Wallets/DynamicEWallets";
 import Remittance from "../Pages/Remittance/Remittance";
 import DynamicRemittance from "../Pages/Remittance/DynamicRemittance";
+import AddFunds from "../Pages/Navbar/Profile/AddFunds";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
             {
                 path: "/faq",
                 element: <Faq />
+            },
+            {
+                path: "/addFunds",
+                element: <AddFunds/>
             },
 
         ]

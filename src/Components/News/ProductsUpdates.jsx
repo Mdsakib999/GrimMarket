@@ -40,7 +40,8 @@ const ProductsUpdates = () => {
                     <BsBank2 className="text-6xl" />
                   </div>
                   <div>
-                    <p className="text-xl font-bold text-[#4af433]">
+                    {/* text-[#4af433] */}
+                    <p className="text-xl font-bold text-[#36fc46]">
                       {upData.title}
                     </p>
                     <p className="text-lg text-gray-400">{upData.category}</p>
