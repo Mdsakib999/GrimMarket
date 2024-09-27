@@ -3,16 +3,31 @@ import Navbar from "../Pages/Navbar/Navbar";
 import Sidebar from "../Pages/Side bar/Sidebar";
 import { Toaster } from 'react-hot-toast';
 import { useState } from "react";
+import { MdOutlineCancelPresentation } from "react-icons/md";
+
 
 const MainLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
     return (
         <div className="thin-scrollbar">
-            <Navbar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} ></Navbar>
+            <Navbar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
+
             <div className="relative">
+                {/* Sidebar */}
                 <Sidebar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
-                <span onClick={(pre) => setSidebarOpen(!pre)} className={`fixed top-24 text-xl z-50 border-2 rounded-full px-3  left-64 ${sidebarOpen ? "block md:hidden" : 'hidden '} `}>{`X`}</span>
+
+                {/* "X" Close Button */}
+                <span
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className={`fixed top-24 text-xl z-50  px-3 left-64 transition-all duration-300 ease-in-out transform 
+                    ${sidebarOpen ? "opacity-100 translate-x-0 block md:hidden" : "opacity-0 translate-x-full hidden"}`}
+                >
+                    <MdOutlineCancelPresentation size={26} className="text-white" />
+
+                </span>
             </div>
+
             <div className="md:ml-[260px] mt-16 px-3">
                 <Outlet />
             </div>
