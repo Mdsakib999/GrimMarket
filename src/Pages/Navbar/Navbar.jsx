@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect, useRef } from "react";
 import { BsCart, BsPerson } from "react-icons/bs"; // Import icons for Cart and Profile
+import { FiMenu } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false); // State to toggle profile dropdown
   const profileRef = useRef(null);
 
@@ -24,14 +27,19 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [profileRef]);
-
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
   return (
-    <nav className="bg-gray-950 text-white py-4 fixed top-0 w-full z-10 px-10">
+    <nav className="bg-gray-950 text-white py-4 fixed top-0 w-full z-20 px-10">
       <div className="container mx-auto flex justify-between items-center">
         {/* Left Side: Grim Market */}
-        <div className="text-xl font-semibold bg-gradient-to-b from-[#060606]  via-[#038e0eca] to-[#163019cc] bg-opacity-10">
-  Grim Market
-</div>
+        {/* <div className="text-xl font-semibold bg-gradient-to-b from-[#060606]  via-[#038e0eca] to-[#163019cc] bg-opacity-10">
+          Grim Market
+        </div> */}
+        <button onClick={toggleSidebar}>
+          {sidebarOpen ? <IoClose size={30} /> : <FiMenu size={30} />}
+        </button>
 
         {/* Right Side: Add funds, Orders, Money, Cart, Profile */}
         <div className="hidden md:flex space-x-6 items-center">
