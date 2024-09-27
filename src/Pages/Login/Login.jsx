@@ -58,8 +58,8 @@ const Login = () => {
   };
 
   return (
-    <div className="lg:w-[40%] mx-auto bg-black rounded-xl shadow-lg pt-1">
-      <p className="text-4xl font-semibold my-12 text-center text-white">Login</p>
+    <div className="md:w-[35%] mx-auto bg-black rounded-xl shadow-lg pt-1  mt-24">
+      <p className="text-4xl font-semibold my-12 text-center text-gray-300">Login</p>
 
       {/* Handle form submission with react-hook-form */}
       <form
