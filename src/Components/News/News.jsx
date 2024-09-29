@@ -23,7 +23,7 @@ const News = () => {
           </p>
           <p className="text-gray-400">In Stock: 10</p>
         </div>
-        <div className="text-gray-400 bg-[#232d3e] font-semibold grid grid-cols-2 absolute left-0 right-0 bottom-0">
+        <div className="text-gray-400 bg-[#232d3e] font-semibold grid grid-cols-2 absolute left-0 right-0 bottom-0 ">
           {/* <Tooltip
                 stock={card.stock}
                 message={
@@ -42,12 +42,12 @@ const News = () => {
                   {card.stock}
                 </button>
               </Tooltip> */}
-          <button className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600">
+          <button className="py-2 flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#02a92f] to-[#78e764] border-r border-gray-600">
             <FaShoppingCart className="text-center mr-1 text-xl" />
             
           </button>
 
-          <button className="flex items-center justify-between ps-3 pe-4 py-1 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
+          <button className="flex items-center justify-between ps-3 pe-4 py-1 hover:bg-gradient-to-r from-[#02a92f] to-[#78e764] hover:text-white">
             <span>
               {/* {card.stock === 0 ? "Out of stock" : "Purchase"} */} Buy Now
             </span>

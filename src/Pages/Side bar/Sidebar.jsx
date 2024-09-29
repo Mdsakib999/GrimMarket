@@ -33,7 +33,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         className={`bg-gray-900 text-white w-64 h-full overflow-y-auto fixed top-0 left-0 transition-transform duration-300 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 z-40`}
       >
         <ul   >
-          <div className="text-xl font-semibold text-center py-4 mb-8 bg-gradient-to-b from-[#060606]  via-[#038e0eca] to-[#163019cc] bg-opacity-10">
+          <div className=" text-xl font-semibold text-center py-4 mb-8 bg-gradient-to-b from-[#060606]  via-[#04670c9f] to-[#040c05cc]">
             Grim Market
           </div>
 
