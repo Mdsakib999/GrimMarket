@@ -33,7 +33,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         className={`bg-gray-900 text-white w-64 h-full overflow-y-auto fixed top-0 left-0 transition-transform duration-300 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 z-40`}
       >
         <ul   >
-          <div className=" text-xl font-semibold text-center py-4 mb-8 bg-gradient-to-b from-[#060606]  via-[#04670c9f] to-[#040c05cc]">
+          <div className=" text-xl font-semibold text-center py-4 mb-2 bg-gradient-to-b from-[#060606]  via-[#04670c9f] to-[#040c05cc]">
             Grim Market
           </div>
 
@@ -91,13 +91,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 {item.children && openParent === item.link && (
                   <ul className="pl-8">
                     {item.children.map((child, childIndex) => (
-                      <li key={childIndex} className="py-2 px-4">
+                      <li key={childIndex} className=" px-4">
                         <NavLink
                           to={child.link}
                           className={({ isActive }) =>
                             isActive
-                              ? "flex items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-                              : "flex  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                              ? "flex items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500 py-2 ps-2"
+                              : "flex  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500 py-2 ps-2"
                           }
                           onClick={() => setActiveLink(child.link)}
                         >
@@ -112,8 +112,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </div>
 
           <div className="mb-24">
-            <p className="text-gray-300 font-semibold text-lg ps-3 py-4">Help</p>
-            <li className="py-2 block px-4">
+            <p className="text-gray-300 font-semibold text-lg ps-3 py-2">Help</p>
+            <li className=" block px-4">
               <NavLink
                 to="/support"
                 className={({ isActive }) =>
@@ -126,7 +126,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 Support
               </NavLink>
             </li>
-            <li className="py-2 block px-4">
+            <li className=" block px-4">
               <NavLink
                 to="/faq"
                 className={({ isActive }) =>

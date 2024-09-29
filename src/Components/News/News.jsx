@@ -4,24 +4,23 @@ import { FaAngleRight } from "react-icons/fa";
 import { IoCube } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 
-const News = () => {
+const News = ({ data }) => {
+  const { title, image, price, quantity } = data
   return (
     <div className=" h-full">
-      This is news page
-      
-      {/* card 2 */}
-      <div className="ml-10 my-20  h-[420px] max-w-[400px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
+
+      <div className="ml-10 my-10  h-[420px] max-w-[400px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
         <img
           className=" w-full pb-7"
           src="https://www.finder.com/niche-builder/6495af0aafcca.png"
           alt=""
         />
         <div className="px-7">
-          <p className="text-gray-200 font-semibold text-2xl">Germany Wise</p>
+          <p className="text-gray-200 font-semibold text-2xl">{title}</p>
           <p className="text-[#36fc46] font-semibold my-2 flex items-center text-lg">
-            <AiFillDollarCircle className="text-xl mr-1" /> € 190.99 USD
+            <AiFillDollarCircle className="text-xl mr-1" /> € {price} USD
           </p>
-          <p className="text-gray-400">In Stock: 10</p>
+          <p className="text-gray-400">In Stock: {quantity}</p>
         </div>
         <div className="text-gray-400 bg-[#232d3e] font-semibold grid grid-cols-2 absolute left-0 right-0 bottom-0 ">
           {/* <Tooltip
@@ -42,9 +41,9 @@ const News = () => {
                   {card.stock}
                 </button>
               </Tooltip> */}
-          <button className="py-2 flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#02a92f] to-[#78e764] border-r border-gray-600">
+          <button className="py-3  flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#02a92f] to-[#78e764] border-r border-gray-600">
             <FaShoppingCart className="text-center mr-1 text-xl" />
-            
+
           </button>
 
           <button className="flex items-center justify-between ps-3 pe-4 py-1 hover:bg-gradient-to-r from-[#02a92f] to-[#78e764] hover:text-white">
