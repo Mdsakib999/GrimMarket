@@ -25,7 +25,7 @@ export const navData = [
             {
                 id: '21',
                 title: 'NoOnes',
-                link: '/crypto-exchanger/no-ones'
+                link: '/crypto-exchanger/noOnes'
             },
             {
                 id: '22',
@@ -65,12 +65,12 @@ export const navData = [
             {
                 id: '29',
                 title: 'Crypto.com',
-                link: '/crypto-exchanger/crypto-com'
+                link: '/crypto-exchanger/crypto.com'
             },
             {
                 id: '30',
                 title: 'Get.io',
-                link: '/crypto-exchanger/get-io'
+                link: '/crypto-exchanger/get.io'
             }
 
         ]
