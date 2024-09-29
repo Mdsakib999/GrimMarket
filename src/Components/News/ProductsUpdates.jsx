@@ -11,7 +11,7 @@ const ProductsUpdates = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
       <div className="grid grid-cols-2 h-screen ">
         {/* Left Side (Optional content) */}
         <div className="bg-slate-800  h-full">
