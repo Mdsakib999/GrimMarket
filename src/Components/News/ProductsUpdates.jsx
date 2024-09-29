@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsBank2 } from "react-icons/bs";
-import News from "./News";
 
 const ProductsUpdates = () => {
   const [upProducts, setUpProducts] = useState([]);
@@ -16,7 +15,7 @@ const ProductsUpdates = () => {
       <div className="grid grid-cols-2 h-screen ">
         {/* Left Side (Optional content) */}
         <div className="bg-slate-800  h-full">
-            <News></News>
+          {/* <News></News> */}
         </div>
 
         {/* Right Side (Product Updates) */}
