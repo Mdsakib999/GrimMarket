@@ -15,8 +15,8 @@ const DynamicAccounts = () => {
         return <div>Loading........</div>
     }
     return (
-        <div className="relative py-3 ps-3 ">
-            <div className="w-full fixed top-[66px] z-10 bg-[#1F2025]  ">
+        <div className="relative py-3 ps- ">
+            <div className="w-full fixed top-[66px] z-10 bg-[#181c30]  ">
                 <div className="flex items-center p-4">
                     <p className="text-2xl  inline-block  border-white">{path}</p>
                     <span className="bg-white inline-block h-[40px] w-[3px] mx-5">,</span>
