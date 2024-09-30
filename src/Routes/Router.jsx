@@ -14,12 +14,14 @@ import DynamicEWallets from "../Pages/E-Wallets/DynamicEWallets";
 import Remittance from "../Pages/Remittance/Remittance";
 import DynamicRemittance from "../Pages/Remittance/DynamicRemittance";
 import AddFunds from "../Pages/Navbar/Profile/AddFunds";
+import PrivetRoutes from './PrivetRoutes';
+import Settings from "../Pages/Settings/Settings";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout />,
+        element: <PrivetRoutes><MainLayout /></PrivetRoutes>,
         children: [
             {
                 path: '/',
@@ -67,7 +69,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/addFunds",
-                element: <AddFunds/>
+                element: <AddFunds />
+            },
+            {
+                path: "/user/settings",
+                element: <Settings />
             },
 
         ]
