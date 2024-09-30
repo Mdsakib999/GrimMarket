@@ -2,9 +2,17 @@
 /* eslint-disable react/prop-types */
 import { AiFillDollarCircle } from "react-icons/ai";
 import { FaAngleRight, FaShoppingCart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { increment } from "../../Redux/Features/AddToCart/addCartSlice";
 
 const Card = ({ data }) => {
-    const { title, image, price, quantity } = data
+    const { title, image, price, quantity, _id } = data
+    const dispatch = useDispatch()
+    const handelAddToCart = (data) => {
+        const { title, image, price, quantity, _id } = data
+        const incrementData = { title, price, _id }
+        dispatch(increment(incrementData))
+    }
     return (
         <div className=" h-full">
 
@@ -45,7 +53,7 @@ const Card = ({ data }) => {
 
                     </button>
 
-                    <button className="flex items-center justify-between ps-3 pe-4 py-1 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
+                    <button onClick={() => handelAddToCart(data)} className="flex items-center justify-between ps-3 pe-4 py-1 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
                         <span>
                             {/* {card.stock === 0 ? "Out of stock" : "Purchase"} */} Buy Now
                         </span>
