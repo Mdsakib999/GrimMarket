@@ -6,11 +6,16 @@ import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logOut } from "../../Redux/Features/Auth/authSlice";
+import { decrement, resetCart } from "../../Redux/Features/AddToCart/addCartSlice";
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false); // State to toggle profile dropdown
+  const [isAddToCartOpen, setIsAddToCartOpen] = useState(false)
   const profileRef = useRef(null);
+  const cartRef = useRef(null)
   const { userName, role } = useSelector((state) => state.auth)
+  const cartArray = useSelector((state) => state.cart)
+  console.log(cartArray);
   const dispatch = useDispatch()
   // Toggle profile dropdown when the button is clicked
   const handleProfileClick = () => {
@@ -23,13 +28,16 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
       }
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setIsAddToCartOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [profileRef]);
+  }, [profileRef, cartRef]);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -49,9 +57,34 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           <Link to="/addFunds" className="hover:text-green-400">Add funds</Link>
           <button className="hover:text-[#36fc46]">Orders</button>
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
-          <button className="hover:text-[#36fc46] flex items-center">
-            <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
-          </button>
+          <div className="relative">
+            <button onClick={() => setIsAddToCartOpen(!isAddToCartOpen)} className="hover:text-[#36fc46] flex items-center">
+              <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
+            </button>
+            {isAddToCartOpen && (
+              <div
+                ref={cartRef}
+                className="absolute right-0 top-10 mt-2 w-96 overflow-y-auto h-[200px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+              >
+                <div>
+                  <div className="flex justify-between">
+                    <p className="font-semibold text-xl" >My Carts</p>
+                    <button onClick={() => dispatch(resetCart())} className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white  text-base px-3  py-1 rounded-md " >reset all</button>
+                  </div>
+                  <div>
+                    {
+                      cartArray?.map((item, index) => (
+                        <div className="flex justify-between" key={index}>
+                          <p>{index + 1}. {item.title} </p>
+                          <p>{item.quantity}/{item.totalPrice} <span onClick={() => dispatch(decrement(item._id))}>x</span></p>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="relative">
             <button
               className="hover:text-[#36fc46] flex items-center border border-green-700 rounded-md px-2 py-1 bg-green-500 bg-opacity-20 hover:bg-opacity-25"
@@ -88,6 +121,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 </ul>
               </div>
             )}
+
           </div>
         </div>
 

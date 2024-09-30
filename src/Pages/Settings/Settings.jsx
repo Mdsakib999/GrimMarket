@@ -39,7 +39,7 @@ const Settings = () => {
                 <UtilsComponents title={'Settings'} description={'Here you can change your account settings'} />
             </div>
             <div className="mt-36 mx-6 bg-[#16191E] rounded-md" >
-                <div className="p-4 flex gap-4" >
+                <div className="p-4 flex md:flex-row flex-col gap-4" >
                     <p className="text-5xl p-12 text-[#238C3D] rounded-lg inline-block font-bold bg-[#182722] ">{userName.split('').slice(0, 2).join('').toUpperCase()}</p>
                     <div>
                         <p className="text-xl inline-block font-bold">{userName}</p>
@@ -48,11 +48,11 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-8 mx-6 bg-[#16191E] p-4 rounded-md ">
+            <div className="mt-8 mx-1 md:mx-6 bg-[#16191E] p-4 rounded-md ">
                 <p className="text-xl  border-b pb-3">Settings</p>
                 <form >
                     <div className="border-b">
-                        <div className="w-[60%] flex justify-between items-center py-8 ">
+                        <div className="w-[60%] flex  justify-between items-center py-8 ">
                             <p>Xmpp</p>
                             <div className="relative">
                                 <input type="text" className="w-[190%]  ps-20 h-[45px] rounded-md bg-transparent border outline-none focus:border-[#238C3D]" />
@@ -78,7 +78,7 @@ const Settings = () => {
                     </div>
                 </form>
             </div>
-            <div className="mt-8 mx-6 bg-[#16191E] p-4 rounded-md ">
+            <div className="mt-8 mx-2 md:mx-6 bg-[#16191E] p-4 rounded-md ">
                 <p className="text-xl  border-b pb-3">Change Password</p>
                 <form onSubmit={handelPasswordChange} >
                     <div className="border-b">
