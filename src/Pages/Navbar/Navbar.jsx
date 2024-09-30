@@ -42,7 +42,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
     setSidebarOpen(!sidebarOpen);
   };
   return (
-    <nav className="bg-gray-900 text-white py-4 fixed top-0 w-full z-20 px-10">
+    <nav className="bg-gray-900 text-white py-4 fixed top-0 w-full z-20 px-10 ">
       <div className="container mx-auto flex justify-between items-center">
         {/* Left Side: Grim Market */}
         {/* <div className="text-xl font-semibold bg-gradient-to-b from-[#060606]  via-[#038e0eca] to-[#163019cc] bg-opacity-10">

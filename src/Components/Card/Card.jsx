@@ -29,7 +29,7 @@ const Card = ({ data }) => {
                     </p>
                     <p className="text-gray-400">In Stock: {quantity}</p>
                 </div>
-                <div className="text-gray-400 bg-[#232d3e] font-semibold grid grid-cols-2 absolute left-0 right-0 bottom-0">
+                <div className="text-gray-400 bg-[#232d3e] font-semibold grid grid-cols-2 absolute left-0 right-0 bottom-0 rounded-b-lg ">
                     {/* <Tooltip
                 stock={card.stock}
                 message={
@@ -48,7 +48,7 @@ const Card = ({ data }) => {
                   {card.stock}
                 </button>
               </Tooltip> */}
-                    <button className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600">
+                    <button className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600 ">
                         <FaShoppingCart className="text-center mr-1 text-xl" />
 
                     </button>
