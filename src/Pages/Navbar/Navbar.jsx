@@ -6,17 +6,23 @@ import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logOut } from "../../Redux/Features/Auth/authSlice";
-import { decrement, resetCart } from "../../Redux/Features/AddToCart/addCartSlice";
+import {
+  decrement,
+  resetCart,
+} from "../../Redux/Features/AddToCart/addCartSlice";
+import { RxCross2 } from "react-icons/rx";
+import { RxCross1 } from "react-icons/rx";
+
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false); // State to toggle profile dropdown
-  const [isAddToCartOpen, setIsAddToCartOpen] = useState(false)
+  const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
   const profileRef = useRef(null);
-  const cartRef = useRef(null)
-  const { userName, role } = useSelector((state) => state.auth)
-  const cartArray = useSelector((state) => state.cart)
+  const cartRef = useRef(null);
+  const { userName, role } = useSelector((state) => state.auth);
+  const cartArray = useSelector((state) => state.cart);
   console.log(cartArray);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // Toggle profile dropdown when the button is clicked
   const handleProfileClick = () => {
     setIsProfileOpen((prev) => !prev);
@@ -54,32 +60,51 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 
         {/* Right Side: Add funds, Orders, Money, Cart, Profile */}
         <div className="hidden md:flex space-x-6 items-center">
-          <Link to="/addFunds" className="hover:text-green-400">Add funds</Link>
+          <Link to="/addFunds" className="hover:text-green-400">
+            Add funds
+          </Link>
           <button className="hover:text-[#36fc46]">Orders</button>
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
           <div className="relative">
-            <button onClick={() => setIsAddToCartOpen(!isAddToCartOpen)} className="hover:text-[#36fc46] flex items-center">
+            <button
+              onClick={() => setIsAddToCartOpen(!isAddToCartOpen)}
+              className="hover:text-[#36fc46] flex items-center"
+            >
               <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
             </button>
             {isAddToCartOpen && (
               <div
                 ref={cartRef}
-                className="absolute right-0 top-10 mt-2 w-96 overflow-y-auto h-[200px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+                className="absolute right-0 top-10 mt-2 w-[400px] overflow-y-auto h-[500px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
               >
                 <div>
-                  <div className="flex justify-between border-b-2 pb-2">
-                    <p className="font-semibold text-xl" >My Carts</p>
-                    <button onClick={() => dispatch(resetCart())} className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white  text-base px-3  py-1 rounded-md " >reset all</button>
+                  <div className="flex justify-between">
+                    <p className="font-semibold text-xl">My Carts</p>
+                    <button
+                      onClick={() => dispatch(resetCart())}
+                      className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600  text-base px-3  py-1 rounded-md "
+                    >
+                      Clear All
+                    </button>
                   </div>
                   <div>
-                    {
-                      cartArray?.map((item, index) => (
-                        <div className="flex justify-between" key={index}>
-                          <p>{index + 1}. {item.title} </p>
-                          <p>{item.quantity}/{item.totalPrice} <span onClick={() => dispatch(decrement(item._id))}>x</span></p>
-                        </div>
-                      ))
-                    }
+                    {cartArray?.map((item, index) => (
+                      <div className="flex justify-between  mt-4" key={index}>
+                        <p>
+                          {index + 1}. {item.title}{" "}
+                        </p>
+                        <p className=" flex items-center gap-x-4">
+                          {item.quantity} / {item.totalPrice}{" "}
+                          {/* <span
+                            className=" px-2 text-xl font-semibold"
+                            onClick={() => dispatch(decrement(item._id))}
+                          >
+                            
+                          </span> */}
+                          <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -102,31 +127,47 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="bg-green-500 rounded-full  flex items-center justify-center p-1 ">
-                    <span><BsPerson className=" text-3xl" /></span>
+                    <span>
+                      <BsPerson className=" text-3xl" />
+                    </span>
                   </div>
                   <div>
                     <p className="font-bold">{userName}</p>
                     <p className="text-sm text-green-400">
-                      {role === 'customer' ? 'user' : role === 'admin' ? 'admin' : ''}
+                      {role === "customer"
+                        ? "user"
+                        : role === "admin"
+                          ? "admin"
+                          : ""}
                     </p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-400">No contacts</p>
                 <hr className="my-2 border-gray-600" />
                 <ul className="space-y-2">
-                  <li className="hover:text-green-400 cursor-pointer"><Link to={'/user/settings'}>My settings</Link></li>
-                  <li className="hover:text-green-400 cursor-pointer"><Link to={'/user/referrals'}>My referrals</Link></li>
-                  <li className="hover:text-green-400 cursor-pointer">My orders</li>
-                  <li onClick={() => dispatch(logOut())} className="hover:text-green-400 cursor-pointer">Logout</li>
-                </ul>
-              </div>
+                  <li className="hover:text-green-400 cursor-pointer">
+                    <Link to={"/user/settings"}>My settings</Link>
+                  </li>
+                  <li className="hover:text-green-400 cursor-pointer">
+                    My referrals
+                  </li>
+                  <li className="hover:text-green-400 cursor-pointer">
+                    My orders
+                  </li>
+                  <li
+                    onClick={() => dispatch(logOut())}
+                    className="hover:text-green-400 cursor-pointer"
+                  >
+                    Logout
+                  </li>
+                </ul >
+              </div >
             )}
-
-          </div>
-        </div>
+          </div >
+        </div >
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex space-x-4 items-center">
+        <div className="md:hidden flex space-x-4 items-center" >
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
           <button className="hover:text-[#36fc46]">
             <BsCart />
@@ -134,9 +175,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           <button className="hover:text-[#36fc46]">
             <BsPerson />
           </button>
-        </div>
-      </div>
-    </nav>
+        </div >
+      </div >
+    </nav >
   );
 };
 
