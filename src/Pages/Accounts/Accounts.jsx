@@ -13,14 +13,14 @@ const Accounts = () => {
     }
     return (
         <div className="relative py-3 ps- ">
-            <div className="w-full fixed top-[65px] z-10 bg-[#181c30]  bg-opacity-95 ">
+            <div className="w-full fixed top-[65px] z-10 bg-[#181c30]  bg-opacity-95">
                 <div className="flex items-center p-4">
                     <p className="text-2xl  inline-block border-white">{path}</p>
                     <span className="bg-white inline-block h-[40px] w-[3px] mx-5">,</span>
                     <p className="text-xl  inline-block border-white">All Products of {path}</p>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center">
+            <div className="flex flex-wrap justify-evenly gap-x ">
                 {
                     data?.data?.map((item, index) => <Card key={index} data={item} />
                     )}

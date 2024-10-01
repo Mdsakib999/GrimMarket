@@ -137,7 +137,7 @@ const Register = () => {
             to="/login"
             className="bg-gray-800 text-white text-center font-bold py-2 rounded focus:outline-none focus:shadow-outline mt-5 w-full"
           >
-            Already Have Account ? <span className="text-orange-500">Login</span>
+            Already Have Account ? <span className="text-green-500">Login</span>
           </Link>
         </div>
       </form>

@@ -43,8 +43,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               className={({ isActive }) =>
                 isActive
-                  ? "flex py-3 ps-2 items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-                  : "flex py-3 ps-2  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                  ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
+                  : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
               }
               onClick={() => toggleSidebar()}
             >
@@ -61,14 +61,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   <div
                     onClick={() => toggleParent(item.link)}
                     className={`flex py-2 ps-2 pe-2 items-center justify-between cursor-pointer ${openParent === item.link
-                      ? "bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-                      : "hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                      ? "bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
+                      : "hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
                       }`}
                   >
                     <NavLink
                       to={item.link}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500" : "text-white"
+                        isActive ? "text-green-500" : "text-white"
                       }
                       onClick={() => {
                         setActiveLink(item.link)
@@ -96,8 +96,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           to={child.link}
                           className={({ isActive }) =>
                             isActive
-                              ? "flex items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500 py-2 ps-2"
-                              : "flex  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500 py-2 ps-2"
+                              ? "flex items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500 py-2 ps-2"
+                              : "flex  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500 py-2 ps-2"
                           }
                           onClick={() => setActiveLink(child.link)}
                         >
@@ -118,8 +118,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 to="/support"
                 className={({ isActive }) =>
                   isActive
-                    ? "flex py-3 ps-2 items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-                    : "flex py-3 ps-2  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                    ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
+                    : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
                 }
                 onClick={() => setActiveLink("support")}
               >
@@ -131,8 +131,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 to="/faq"
                 className={({ isActive }) =>
                   isActive
-                    ? "flex py-3 ps-2 items-center justify-between bg-orange-400 bg-opacity-20 border-l-4 border-orange-500 text-orange-500"
-                    : "flex py-3 ps-2  items-center justify-between hover:bg-orange-400 hover:bg-opacity-20 hover:border-l-4 border-orange-500"
+                    ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
+                    : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
                 }
                 onClick={() => setActiveLink("faq")}
               >

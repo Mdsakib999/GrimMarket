@@ -12,11 +12,11 @@ const EWallets = () => {
     }
     return (
         <div className="relative py-3 ps-3 ">
-            <div className="w-full fixed top-[66px] z-10 bg-[#1F2025]  ">
+            <div className="w-full fixed top-[65px] z-10 bg-[#181c30]  bg-opacity-95  ">
                 <div className="flex items-center p-4">
                     <p className="text-2xl  inline-block  border-white">{path.split(' ').join('-')}</p>
                     <span className="bg-white inline-block h-[40px] w-[3px] mx-5">,</span>
-                    <p className="text-2xl  inline-block  border-white">{path.split(' ').join('-')}</p>
+                    <p className="text-2xl  inline-block  border-white">All Products of {path.split(' ').join('-')}</p>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center">
