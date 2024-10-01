@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUserRegisterMutation } from "../../Redux/Features/Auth/authApi";
 import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
+  const location = useLocation()
+  console.log(location.search);
   const [show, setShow] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
   const [registerUser] = useUserRegisterMutation()

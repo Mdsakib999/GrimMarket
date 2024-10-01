@@ -16,6 +16,7 @@ import DynamicRemittance from "../Pages/Remittance/DynamicRemittance";
 import AddFunds from "../Pages/Navbar/Profile/AddFunds";
 import PrivetRoutes from './PrivetRoutes';
 import Settings from "../Pages/Settings/Settings";
+import Referrals from "../Pages/Referrals/Referrals";
 
 
 export const router = createBrowserRouter([
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
             {
                 path: "/user/settings",
                 element: <Settings />
+            },
+            {
+                path: "/user/referrals",
+                element: <Referrals />
             },
 
         ]

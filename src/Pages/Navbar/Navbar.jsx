@@ -67,7 +67,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 className="absolute right-0 top-10 mt-2 w-96 overflow-y-auto h-[200px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
               >
                 <div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between border-b-2 pb-2">
                     <p className="font-semibold text-xl" >My Carts</p>
                     <button onClick={() => dispatch(resetCart())} className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white  text-base px-3  py-1 rounded-md " >reset all</button>
                   </div>
@@ -115,7 +115,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 <hr className="my-2 border-gray-600" />
                 <ul className="space-y-2">
                   <li className="hover:text-green-400 cursor-pointer"><Link to={'/user/settings'}>My settings</Link></li>
-                  <li className="hover:text-green-400 cursor-pointer">My referrals</li>
+                  <li className="hover:text-green-400 cursor-pointer"><Link to={'/user/referrals'}>My referrals</Link></li>
                   <li className="hover:text-green-400 cursor-pointer">My orders</li>
                   <li onClick={() => dispatch(logOut())} className="hover:text-green-400 cursor-pointer">Logout</li>
                 </ul>
