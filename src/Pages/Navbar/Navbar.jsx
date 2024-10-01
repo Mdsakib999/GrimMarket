@@ -100,7 +100,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                           >
                             
                           </span> */}
-                          <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer"/>
+                          <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
                         </p>
                       </div>
                     ))}
@@ -136,8 +136,8 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                       {role === "customer"
                         ? "user"
                         : role === "admin"
-                        ? "admin"
-                        : ""}
+                          ? "admin"
+                          : ""}
                     </p>
                   </div>
                 </div>
@@ -159,14 +159,14 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                   >
                     Logout
                   </li>
-                </ul>
-              </div>
+                </ul >
+              </div >
             )}
-          </div>
-        </div>
+          </div >
+        </div >
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex space-x-4 items-center">
+        <div className="md:hidden flex space-x-4 items-center" >
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
           <button className="hover:text-[#36fc46]">
             <BsCart />
@@ -174,9 +174,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           <button className="hover:text-[#36fc46]">
             <BsPerson />
           </button>
-        </div>
-      </div>
-    </nav>
+        </div >
+      </div >
+    </nav >
   );
 };
 
