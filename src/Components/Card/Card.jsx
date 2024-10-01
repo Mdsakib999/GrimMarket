@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { AiFillDollarCircle } from "react-icons/ai";
 import { FaAngleRight, FaShoppingCart } from "react-icons/fa";
+import { AiOutlineEuro } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { increment } from "../../Redux/Features/AddToCart/addCartSlice";
 
@@ -25,7 +26,7 @@ const Card = ({ data }) => {
                 <div className="px-7">
                     <p className="text-gray-200 font-semibold text-2xl">{title}</p>
                     <p className="text-[#36fc46] font-semibold my-2 flex items-center text-lg">
-                        <AiFillDollarCircle className="text-xl mr-1" /> € {price} USD
+                        <AiOutlineEuro className="text-2xl mr-2" />  {price} USD
                     </p>
                     <p className="text-gray-400">In Stock: {quantity}</p>
                 </div>
@@ -49,11 +50,11 @@ const Card = ({ data }) => {
                 </button>
               </Tooltip> */}
                     <button className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600 ">
-                        <FaShoppingCart className="text-center mr-1 text-xl" />
+                        <FaShoppingCart className="text-center mr-1 text-2xl" />
 
                     </button>
 
-                    <button onClick={() => handelAddToCart(data)} className="flex items-center justify-between ps-3 pe-4 py-1 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
+                    <button onClick={() => handelAddToCart(data)} className="flex items-center justify-between ps-3 pe-4 py-3 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
                         <span>
                             {/* {card.stock === 0 ? "Out of stock" : "Purchase"} */} Buy Now
                         </span>
