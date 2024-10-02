@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaSpinner } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { useUserRegisterMutation } from "../../Redux/Features/Auth/authApi";
 import toast, { Toaster } from 'react-hot-toast';
+import CaptchaComponent from "../../Components/CaptchaComponent/CaptchaComponent";
 
 const Register = () => {
   const location = useLocation()
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   console.log(location.search);
   const [show, setShow] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
@@ -121,14 +123,19 @@ const Register = () => {
           {/* Display error message if password is invalid */}
           {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
         </div>
+        <CaptchaComponent setIsCaptchaValid={setIsCaptchaValid} />
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center mt-8">
           <button
-            disabled={isLoading}
-            className="bg-gradient-to-r from-blue-500 to-green-400 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline w-full mt-6"
+            disabled={isLoading || !isCaptchaValid}
+            className={`bg-gradient-to-r from-blue-500 to-green-400 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline w-full flex justify-center items-center ${isLoading || !isCaptchaValid ? "cursor-not-allowed opacity-50" : ""}`}
             type="submit"
           >
-            Sign Up
+            {isLoading ? (
+              <FaSpinner className="animate-spin mr-2" />
+            ) : (
+              "Register"
+            )}
           </button>
         </div>
 
