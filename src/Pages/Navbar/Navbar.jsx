@@ -10,7 +10,6 @@ import {
   decrement,
   resetCart,
 } from "../../Redux/Features/AddToCart/addCartSlice";
-import { RxCross2 } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 
 
