@@ -10,11 +10,11 @@ import CaptchaComponent from "../../Components/CaptchaComponent/CaptchaComponent
 const Register = () => {
   const location = useLocation()
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
-  console.log(location.search);
   const [show, setShow] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
   const [registerUser] = useUserRegisterMutation()
-
+  const ref = location.search.split('=')[1]
+  console.log(ref);
   // Initialize useForm hook from react-hook-form
   const {
     register,
