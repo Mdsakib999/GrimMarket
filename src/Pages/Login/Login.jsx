@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaSpinner } from "react-icons/fa";
@@ -8,16 +9,16 @@ import { useDispatch } from "react-redux";
 import { loginIn } from "../../Redux/Features/Auth/authSlice";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
-
+import CaptchaComponent from "../../Components/CaptchaComponent/CaptchaComponent";
 
 const Login = () => {
   const [show, setShow] = useState(true);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [login] = useUserLoginMutation();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-
-  // Use react-hook-form for handling form
+  const navigate = useNavigate();
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);  // Captcha validation state
+  console.log(isCaptchaValid);
   const {
     register,
     handleSubmit,
@@ -30,43 +31,35 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    // Show a loading toast
-    setIsLoading(true)
+    // if (!isCaptchaValid) {
+    //   toast.error("Please complete the captcha verification.");
+    //   return;
+    // }
+
+    setIsLoading(true);
     const toastId = toast.loading("Logging in...");
     try {
-      // Call login API
       const res = await login(data);
-      console.log(res);
       if (res?.data) {
         const userData = decodedUser(res.data.token);
         dispatch(loginIn(userData));
-
-        // Success notification
         toast.success("Login successful!", { id: toastId });
-        navigate('/')
+        navigate('/');
       } else {
-        // Error handling and notification
         toast.error(res.error?.data?.message || "Login failed.", { id: toastId });
       }
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
-      // Handle unexpected errors
       toast.error("An error occurred during login.", { id: toastId });
-      console.log(error);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="md:w-[35%] mx-auto bg-black rounded-xl shadow-lg pt-1  mt-24">
+    <div className="md:w-[35%] mx-auto bg-black rounded-xl shadow-lg pt-1 mt-24">
       <p className="text-4xl font-semibold my-12 text-center text-gray-300">Login</p>
 
-      {/* Handle form submission with react-hook-form */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="shadow-md rounded px-12 pt-6 pb-8 mb-4"
-      >
-        {/* User Name Field */}
+      <form onSubmit={handleSubmit(onSubmit)} className="shadow-md rounded px-12 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-white text-sm font-bold mb-2" htmlFor="userName">
             User Name
@@ -86,7 +79,6 @@ const Login = () => {
           {errors.userName && <p className="text-red-500 text-sm">{errors.userName.message}</p>}
         </div>
 
-        {/* Password Field */}
         <div className="mb-4 relative">
           <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
             Password
@@ -106,16 +98,16 @@ const Login = () => {
           {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
         </div>
 
-        {/* Submit Button */}
+        <CaptchaComponent setIsCaptchaValid={setIsCaptchaValid} /> {/* Pass setIsCaptchaValid */}
+
         <div className="flex items-center justify-center mt-8">
           <button
-            disabled={isLoading}
-            className={`bg-gradient-to-r from-blue-500 to-green-400 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline w-full flex justify-center items-center ${isLoading ? "cursor-not-allowed" : ""
-              }`}
+            disabled={isLoading || !isCaptchaValid}
+            className={`bg-gradient-to-r from-blue-500 to-green-400 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline w-full flex justify-center items-center ${isLoading || !isCaptchaValid ? "cursor-not-allowed opacity-50" : ""}`}
             type="submit"
           >
             {isLoading ? (
-              <FaSpinner className="animate-spin mr-2" /> // Display animated spinner
+              <FaSpinner className="animate-spin mr-2" />
             ) : (
               "Login"
             )}
@@ -124,12 +116,8 @@ const Login = () => {
 
         <p className="mt-4 text-white text-center">OR</p>
 
-        {/* Link to Register */}
         <div className="flex items-center justify-center">
-          <Link
-            to="/register"
-            className="bg-gray-800 text-white text-center font-bold py-2 rounded focus:outline-none focus:shadow-outline mt-5 w-full"
-          >
+          <Link to="/register" className="bg-gray-800 text-white text-center font-bold py-2 rounded focus:outline-none focus:shadow-outline mt-5 w-full">
             Create a new account
           </Link>
         </div>

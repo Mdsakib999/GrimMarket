@@ -70,6 +70,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
               className="hover:text-[#36fc46] flex items-center"
             >
               <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
+              <span className="absolute -top-3 bg-white text-black rounded-full w-5 text-center">{cartArray.length}</span>
             </button>
             {isAddToCartOpen && (
               <div
@@ -148,7 +149,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     <Link to={"/user/settings"}>My settings</Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
-                    My referrals
+                    <Link to={'/user/referrals'}>
+                      My referrals
+                    </Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
                     My orders

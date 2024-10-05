@@ -1,7 +1,35 @@
 import { BsPersonAdd } from "react-icons/bs";
 import UtilsComponents from "../../Components/UtilsComponensts/UtilsComponents";
+import { FaMoneyBillAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import copy from "copy-to-clipboard";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useGetMeQuery } from "../../Redux/Features/Auth/authApi";
 
 const Referrals = () => {
+    const { userName } = useSelector((state) => state.auth)
+    const { data } = useGetMeQuery(undefined, { skip: !userName })
+    const secretRef = data?.data._id
+    const [copyText, setCopyText] = useState('');
+
+    // Update the referral link when `secretRef` is available
+    useEffect(() => {
+        if (secretRef) {
+            const ref = btoa(secretRef)
+            console.log(atob(ref));
+            setCopyText(`http://localhost:5173/register?ref=${ref}`);
+        }
+    }, [secretRef]);
+    console.log(copyText);
+    const handleCopyText = (e) => {
+        setCopyText(e.target.value);
+    };
+
+    const copyToClipboard = () => {
+        copy(copyText);
+        toast.success('Text Cope')
+    };
     return (
         <div>
             <div>
@@ -18,7 +46,7 @@ const Referrals = () => {
                         <p>Total of my referrals</p>
                     </div>
                     <div className="bg-[#16191E] text-center p-8 rounded-md">
-                        <BsPersonAdd className="text-7xl mx-auto text-[#206034]" />
+                        <FaMoneyBillAlt className="text-7xl mx-auto text-[#206034]" />
                         <p className="py-2 text-lg font-semibold text-[#29A649]">$0.00</p>
                         <p>Earned total from referrals</p>
                     </div>
@@ -42,6 +70,10 @@ const Referrals = () => {
                     </table>
 
                 </div>
+            </div>
+            <div className="mt-4  mx-4 w-[38%] flex gap-3 bg-[#16191E] p-6 rounded-md">
+                <input onChange={handleCopyText} className="bg-transparent border w-full p-2 rounded-md border-[#238C3D] " type="text" value={copyText} />
+                <button onClick={copyToClipboard} className="bg-[#206034] hover:bg-[#238C3D] px-4 font-semibold rounded-md">Copy</button>
             </div>
         </div>
     );
