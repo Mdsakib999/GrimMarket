@@ -69,7 +69,8 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
               onClick={() => setIsAddToCartOpen(!isAddToCartOpen)}
               className="hover:text-[#36fc46] flex items-center"
             >
-              <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
+              <BsCart className="mr-1 text-[35px]" /> {/* Cart Icon */}
+              <span className="absolute -top-2 -right-2 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[10px] text-center text-sm">{cartArray.length}</span>
             </button>
             {isAddToCartOpen && (
               <div
@@ -148,7 +149,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     <Link to={"/user/settings"}>My settings</Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
-                    My referrals
+                    <Link to={'/user/referrals'}>
+                      My referrals
+                    </Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
                     My orders
