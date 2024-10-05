@@ -12,8 +12,8 @@ const Register = () => {
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [show, setShow] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
-  const [registerUser] = useUserRegisterMutation()
   const ref = location.search.split('=')[1]
+  const [registerUser] = useUserRegisterMutation()
   console.log(ref);
   // Initialize useForm hook from react-hook-form
   const {
@@ -27,11 +27,17 @@ const Register = () => {
     setIsLoading(true)
     const toastId = toast.loading("Registering...");
 
+    const registrationData = {
+      ...data,
+      ref
+    }
+    console.log(registrationData);
+
     try {
       // Call the registerUser API (replace this with your actual API call)
 
-      const res = await registerUser(data);
-
+      const res = await registerUser(registrationData);
+      console.log(res);
       // If registration is successful
       if (res.data && res.data.success) {
         // Update the loading toast to success

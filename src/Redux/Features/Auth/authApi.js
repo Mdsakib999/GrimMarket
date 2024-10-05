@@ -16,12 +16,15 @@ const authApi = baseApi.injectEndpoints({
       },
     }),
     userRegister: build.mutation({
-      query: (data) => ({
-        url: "/user/create-user",
-        method: "POST",
-        body: data,
-      }),
+      query: (data) => {
+        return {
+          url: "/user/create-user",
+          method: "POST",
+          body: data, // Send data in the request body
+        };
+      },
     }),
+
     userPasswordChange: build.mutation({
       query: (data) => ({
         url: "/user/change-password",
