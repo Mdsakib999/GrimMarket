@@ -9,7 +9,8 @@ import { useGetMeQuery } from "../../Redux/Features/Auth/authApi";
 
 const Referrals = () => {
     const { userName } = useSelector((state) => state.auth)
-    const { data } = useGetMeQuery(undefined, { skip: !userName })
+    const { data, isLoading } = useGetMeQuery(undefined, { skip: !userName, refetchOnFocus: true })
+    console.log(data);
     const secretRef = data?.data._id
     const [copyText, setCopyText] = useState('');
 
@@ -61,11 +62,15 @@ const Referrals = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="border-b border-gray-700 hover:bg-gray-700 transition-all">
-                                <td className="px-6 py-4">John Doe</td>
-                                <td className="px-6 py-4">Completed task</td>
-                                <td className="px-6 py-4">$120</td>
-                            </tr>
+                            {
+                                isLoading ? <div>Loading...</div>
+                                    :
+                                    data?.data?.ref?.map(item => <tr key={item.id} className="border-b border-gray-700 hover:bg-gray-700 transition-all">
+                                        <td className="px-6 py-4">{item.userName}</td>
+                                        <td className="px-6 py-4">Completed task</td>
+                                        <td className="px-6 py-4">${item.dollar}</td>
+                                    </tr>)
+                            }
                         </tbody>
                     </table>
 
