@@ -8,9 +8,9 @@ const DynamicAccounts = () => {
     const params = capitalizeBusinessWise(dynamic)
     const location = useLocation()
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
+    console.log(params);
     // const categoryName = capitalizeBusinessWise(location.pathname.split('/')[1])
-    const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: "Account" }, { name: 'subCategoryName', value: params }])
-    console.log(location);
+    const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: "Accounts" }, { name: 'subCategoryName', value: params }])
     if (isLoading) {
         return <div>Loading........</div>
     }

@@ -15,7 +15,15 @@ const productManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    createProduct: builder.mutation({
+      query: (payload) => ({
+        url: "/product/create-product",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productManagementApi;
+export const { useGetProductsQuery, useCreateProductMutation } =
+  productManagementApi;

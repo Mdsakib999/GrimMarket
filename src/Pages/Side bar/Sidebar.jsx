@@ -1,14 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BsArrowRightSquare, BsArrowDownSquare } from "react-icons/bs";
-import { FiMenu } from "react-icons/fi"; // For mobile hamburger menu icon
-import { IoClose } from "react-icons/io5"; // For close icon in mobile
-import { navData } from "../../utils/navData";
+// import { FiMenu } from "react-icons/fi"; // For mobile hamburger menu icon
+// import { IoClose } from "react-icons/io5"; // For close icon in mobile
+import { adminNavData, customerNavData } from "../../utils/navData";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [activeLink, setActiveLink] = useState(null);
   const [openParent, setOpenParent] = useState(null);
-
+  const { role } = useSelector((state) => state.auth)
   const toggleParent = (parent) => {
     setOpenParent((prevParent) => (prevParent === parent ? null : parent));
   };
@@ -17,6 +19,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     setSidebarOpen(!sidebarOpen);
     setActiveLink("news")
   };
+  const navData = role === 'customer' ? customerNavData : role === 'admin' ? adminNavData : ''
 
   return (
     <>
