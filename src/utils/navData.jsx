@@ -1,4 +1,5 @@
-export const navData = [
+
+export const customerNavData = [
 
     {
         id: "1",
@@ -121,7 +122,7 @@ export const navData = [
             {
                 id: '41',
                 title: 'WorldRemit',
-                link: '/remittance/worldremit'
+                link: '/remittance/worldRemit'
             },
             {
                 id: '42',
@@ -153,4 +154,11 @@ export const navData = [
         ]
     },
 
-] 
+]
+export const adminNavData = [
+    {
+        id: "1",
+        title: 'Add Product',
+        link: '/admin/add-product',
+    }
+]

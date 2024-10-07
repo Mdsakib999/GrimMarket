@@ -17,6 +17,8 @@ import AddFunds from "../Pages/Navbar/Profile/AddFunds";
 import PrivetRoutes from './PrivetRoutes';
 import Settings from "../Pages/Settings/Settings";
 import Referrals from "../Pages/Referrals/Referrals";
+import AddProduct from "../Pages/Add_Product/AddProduct";
+import AdminRoutes from "./AdminRoutes";
 
 
 export const router = createBrowserRouter([
@@ -80,6 +82,10 @@ export const router = createBrowserRouter([
                 path: "/user/referrals",
                 element: <Referrals />
             },
+            {
+                path: '/admin/add-product',
+                element: <AdminRoutes><AddProduct /></AdminRoutes>
+            }
 
         ]
     },
