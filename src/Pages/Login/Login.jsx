@@ -56,10 +56,10 @@ const Login = () => {
   };
 
   return (
-    <div className="md:w-[35%] mx-auto bg-black rounded-xl shadow-lg pt-1 mt-24">
-      <p className="text-4xl font-semibold my-12 text-center text-gray-300">Login</p>
+    <div className="md:w-[35%] mx-auto bg-black rounded-xl shadow-lg pt-1 mt-16 ">
+      <p className="text-4xl font-semibold my-7 text-center text-gray-300 ">Login</p>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="shadow-md rounded px-12 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="shadow-md rounded px-12 pt-2 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-white text-sm font-bold mb-2" htmlFor="userName">
             User Name

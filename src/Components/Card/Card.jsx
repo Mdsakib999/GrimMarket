@@ -15,9 +15,9 @@ const Card = ({ data }) => {
         dispatch(increment(incrementData))
     }
     return (
-        <div className=" h-full">
+        <div className=" h-full ">
 
-            <div className="ml-10 my-20  h-[420px] max-w-[400px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
+            <div className="ml-10 mt-20  h-[420px] max-w-[400px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
                 <img
                     className=" w-full pb-7"
                     src="https://www.finder.com/niche-builder/6495af0aafcca.png"
