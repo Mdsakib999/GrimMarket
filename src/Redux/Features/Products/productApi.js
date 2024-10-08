@@ -22,8 +22,33 @@ const productManagementApi = baseApi.injectEndpoints({
         body: payload,
       }),
     }),
+    getAllProducts: builder.query({
+      query: (args) => {
+        console.log(args);
+        const params = new URLSearchParams();
+        if (args) {
+          args?.map((item) => params.append(item.name, item.value));
+        }
+        return {
+          url: "/product/getAllProduct",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
+    editProduct: builder.mutation({
+      query: ({ updateData, id }) => ({
+        url: `/product/editProduct/${id}`,
+        method: "PATCH",
+        body: updateData,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useCreateProductMutation } =
-  productManagementApi;
+export const {
+  useGetProductsQuery,
+  useCreateProductMutation,
+  useGetAllProductsQuery,
+  useEditProductMutation,
+} = productManagementApi;

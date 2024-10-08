@@ -160,5 +160,10 @@ export const adminNavData = [
         id: "1",
         title: 'Add Product',
         link: '/admin/add-product',
+    },
+    {
+        id: "1",
+        title: 'Menage Product',
+        link: '/admin/menage-product',
     }
 ]
