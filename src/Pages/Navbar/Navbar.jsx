@@ -74,8 +74,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 className="hover:text-[#36fc46] flex items-center"
               >
                 <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
-                <span className="absolute -top-3 bg-white text-black rounded-full w-5 text-center">{cartArray.length}</span>
+                <span className="absolute -top-4 -right-2 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[10px] text-center text-sm">{cartArray.length}</span>
               </button>
+              
               {isAddToCartOpen && (
                 <div
                   ref={cartRef}

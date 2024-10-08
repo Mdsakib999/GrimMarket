@@ -13,7 +13,7 @@ const CryptoExchanger = () => {
         return <div>Loading........</div>
     }
     return (
-        <div className="relative py-3 ps-3 ">
+        <div className="relative py-10 ps-3 ">
             <div className="w-full fixed top-[65px] z-10 bg-[#181c30]  bg-opacity-95 ">
                 <div className="flex items-center p-4">
                     <p className="text-2xl  inline-block  border-white">{path}</p>

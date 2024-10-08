@@ -74,7 +74,7 @@ const CaptchaComponent = ({ setIsCaptchaValid }) => {
     return (
         <div className="w-full">
             {/* CAPTCHA display section with reload button */}
-            <div className="border flex items-center gap-3 border-gray-300 rounded-md p-4 shadow-lg mb-4">
+            <div className="border flex items-center gap-3 border-gray-300 rounded-md p-2 shadow-lg mb-4 ">
                 <canvas
                     ref={canvasRef}
                     height="45"
@@ -96,7 +96,7 @@ const CaptchaComponent = ({ setIsCaptchaValid }) => {
                 placeholder="Enter the text shown above"
                 value={userInput}
                 onChange={handleUserInputChange}
-                className="border border-gray-300 text-black rounded-md px-4 py-2 w-full mb-4"
+                className="border border-gray-300 text-black rounded-md px-4 py-2 w-full mb-1"
             />
         </div>
     );
