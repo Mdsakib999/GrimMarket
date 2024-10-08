@@ -8,7 +8,7 @@ const DynamicEWallets = () => {
     const params = capitalizeBusinessWise(dynamic)
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
     const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: "E-Wallets" }, { name: 'subCategoryName', value: params }])
-
+    console.log(params);
     if (isLoading) {
         return <div>Loading........</div>
     }

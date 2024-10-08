@@ -10,7 +10,7 @@ const DynamicCryptoExchanger = () => {
     const categoryName = capitalizeBusinessWise(location.pathname.split('/')[1])
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
     const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: categoryName }, { name: 'subCategoryName', value: params }])
-
+    console.log(params);
     if (isLoading) {
         return <div>Loading........</div>
     }

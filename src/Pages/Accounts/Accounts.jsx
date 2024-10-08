@@ -3,7 +3,7 @@ import { useGetProductsQuery } from "../../Redux/Features/Products/productApi";
 import Card from "../../Components/Card/Card";
 import { capitalizeBusinessWise } from "../../utils/capitalizeBusinessWise";
 const Accounts = () => {
-    const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: 'Account' }])
+    const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: 'Accounts' }])
     const location = useLocation()
     console.log(location.pathname.split('/').join(''));
     const path = capitalizeBusinessWise(location.pathname.split('/').join(''))

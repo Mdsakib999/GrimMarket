@@ -26,7 +26,6 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const handleProfileClick = () => {
     setIsProfileOpen((prev) => !prev);
   };
-
   // Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -46,6 +45,8 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+  const roleAbility = role === 'customer'
+
   return (
     <nav className="bg-gray-900 text-white py-4 fixed top-0 w-full z-20 px-10 ">
       <div className="container mx-auto flex justify-between items-center">
@@ -62,54 +63,59 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           <Link to="/addFunds" className="hover:text-green-400">
             Add funds
           </Link>
-          <button className="hover:text-[#36fc46]">Orders</button>
+          {
+            roleAbility && <button className="hover:text-[#36fc46]">Orders</button>
+          }
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
-          <div className="relative">
-            <button
-              onClick={() => setIsAddToCartOpen(!isAddToCartOpen)}
-              className="hover:text-[#36fc46] flex items-center"
-            >
-              <BsCart className="mr-1 text-[35px]" /> {/* Cart Icon */}
-              <span className="absolute -top-2 -right-2 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[10px] text-center text-sm">{cartArray.length}</span>
-            </button>
-            {isAddToCartOpen && (
-              <div
-                ref={cartRef}
-                className="absolute right-0 top-10 mt-2 w-[400px] overflow-y-auto h-[500px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+          {
+            roleAbility && <div className="relative">
+              <button
+                onClick={() => setIsAddToCartOpen(!isAddToCartOpen)}
+                className="hover:text-[#36fc46] flex items-center"
               >
-                <div>
-                  <div className="flex justify-between">
-                    <p className="font-semibold text-xl">My Carts</p>
-                    <button
-                      onClick={() => dispatch(resetCart())}
-                      className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600  text-base px-3  py-1 rounded-md "
-                    >
-                      Clear All
-                    </button>
-                  </div>
+                <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
+                <span className="absolute -top-4 -right-2 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[10px] text-center text-sm">{cartArray.length}</span>
+              </button>
+              
+              {isAddToCartOpen && (
+                <div
+                  ref={cartRef}
+                  className="absolute right-0 top-10 mt-2 w-[400px] overflow-y-auto h-[500px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+                >
                   <div>
-                    {cartArray?.map((item, index) => (
-                      <div className="flex justify-between  mt-4" key={index}>
-                        <p>
-                          {index + 1}. {item.title}{" "}
-                        </p>
-                        <p className=" flex items-center gap-x-4">
-                          {item.quantity} / {item.totalPrice}{" "}
-                          {/* <span
+                    <div className="flex justify-between">
+                      <p className="font-semibold text-xl">My Carts</p>
+                      <button
+                        onClick={() => dispatch(resetCart())}
+                        className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600  text-base px-3  py-1 rounded-md "
+                      >
+                        Clear All
+                      </button>
+                    </div>
+                    <div>
+                      {cartArray?.map((item, index) => (
+                        <div className="flex justify-between  mt-4" key={index}>
+                          <p>
+                            {index + 1}. {item.title}{" "}
+                          </p>
+                          <p className=" flex items-center gap-x-4">
+                            {item.quantity} / {item.totalPrice}{" "}
+                            {/* <span
                             className=" px-2 text-xl font-semibold"
                             onClick={() => dispatch(decrement(item._id))}
                           >
                             
                           </span> */}
-                          <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
-                        </p>
-                      </div>
-                    ))}
+                            <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          }
           <div className="relative">
             <button
               className="hover:text-[#36fc46] flex items-center border border-green-700 rounded-md px-2 py-1 bg-green-500 bg-opacity-20 hover:bg-opacity-25"
