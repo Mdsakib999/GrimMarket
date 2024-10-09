@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useEditProductMutation, useGetAllProductsQuery } from "../../Redux/Features/Products/productApi";
+import { useDeleteProductMutation, useEditProductMutation, useGetAllProductsQuery } from "../../Redux/Features/Products/productApi";
 import { categoriesArray, subcategories } from "../../utils/categoryItem";
 import { FaSpinner } from "react-icons/fa";
 import { cloudinaryUpload } from "../../utils/getImageLink";
@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 const ManageProduct = () => {
     const [editData] = useEditProductMutation()
+    const [deleteProduct] = useDeleteProductMutation()
     const [query, setQuery] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalData, setModalData] = useState({})
@@ -51,7 +52,14 @@ const ManageProduct = () => {
             toast.success('Some Error', { id: toastId })
         }
     }
-    const handelDelete = (id) => {
+    const handelDelete = async (id) => {
+        var proceed = confirm("Are you sure you want to proceed?");
+        if (proceed) {
+            const res = await deleteProduct(id)
+            if (res) {
+                refetch()
+            }
+        }
 
     }
     const closeModal = () => {
@@ -174,7 +182,7 @@ const ManageProduct = () => {
                             <td className="py-2 px-4 border">{product.subCategoryName}</td>
                             <td className="py-2 px-4 border">${product.price}</td>
                             <td className="py-2 px-4 border">{product.quantity}</td>
-                            <td className="py-2 px-4 border mx-auto"><td className="py-2 px-4 border text-center">
+                            <td className="py-2 px-4 border mx-auto">
                                 <span
                                     onClick={() => {
                                         setShowModal(true)
@@ -187,127 +195,129 @@ const ManageProduct = () => {
                                     Edit
                                 </span>
                                 <span
+
                                     onClick={() => handelDelete(product._id)}
                                     className="cursor-pointer text-red-500 hover:text-red-700 px-2 py-1 rounded-md transition-colors duration-300 ml-4"
                                 >
                                     Delete
                                 </span>
-                            </td>
+
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            {showModal ? (
-                <>
-                    <div
-                        className="justify-center  text-black items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-                    >
-                        <div className="relative w-[50%] my-6 mx-auto max-w-3xl">
-                            {/*content*/}
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                {/*header*/}
-                                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                                    <h3 className="text-3xl font-semibold">
-                                        Product Edit
-                                    </h3>
-                                    <button
-                                        className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                        onClick={closeModal}
-                                    >
-                                        <span className="bg-transparent text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
-                                            ×
-                                        </span>
-                                    </button>
-                                </div>
-                                {/*body*/}
-                                <div className="relative p-6 flex-auto">
-                                    <form onSubmit={handelEdit} className="space-y-4">
+            {
+                showModal ? (
+                    <>
+                        <div
+                            className="justify-center  text-black items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        >
+                            <div className="relative w-[50%] my-6 mx-auto max-w-3xl">
+                                {/*content*/}
+                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                    {/*header*/}
+                                    <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                                        <h3 className="text-3xl font-semibold">
+                                            Product Edit
+                                        </h3>
+                                        <button
+                                            className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                            onClick={closeModal}
+                                        >
+                                            <span className="bg-transparent text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                                ×
+                                            </span>
+                                        </button>
+                                    </div>
+                                    {/*body*/}
+                                    <div className="relative p-6 flex-auto">
+                                        <form onSubmit={handelEdit} className="space-y-4">
 
-                                        {/* Title */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Product Title</label>
-                                            <input
-                                                type="text"
-                                                name="title"
-                                                defaultValue={modalData.title}
-                                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
-                                                placeholder="Enter product title"
+                                            {/* Title */}
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700">Product Title</label>
+                                                <input
+                                                    type="text"
+                                                    name="title"
+                                                    defaultValue={modalData.title}
+                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                    placeholder="Enter product title"
 
-                                            />
-                                        </div>
+                                                />
+                                            </div>
 
-                                        {/* Image */}
-
-
-                                        {/* Price */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Price</label>
-                                            <input
-                                                type="number"
-                                                name="price"
-                                                defaultValue={modalData.price}
-                                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
-                                                placeholder="Enter price"
-
-                                            />
-                                        </div>
-
-                                        {/* Quantity */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Quantity</label>
-                                            <input
-                                                type="number"
-                                                name="quantity"
-                                                defaultValue={modalData.quantity}
-                                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
-                                                placeholder="Enter quantity"
-
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Product Image</label>
-                                            {
-                                                isImageChange ?
-                                                    <div className="flex">
-                                                        <input
-                                                            type="file"
-                                                            name="image"
-                                                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
-
-                                                        />
-
-                                                        <span onClick={() => setIsImageChange(false)} className="inline-block px-3 pt-3 cursor-pointer bg-red-400 rounded-md pt">Change</span>
-
-                                                    </div>
-                                                    :
-                                                    <div className="relative">
-                                                        <img src={imageLink} alt="" className="size-16 inline-block" />
-                                                        <span onClick={() => setIsImageChange(true)} className="absolute -top-1 left-11 cursor-pointer text-xl font-bold  ">x</span>
-                                                    </div>
-                                            }
-                                        </div>
+                                            {/* Image */}
 
 
+                                            {/* Price */}
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700">Price</label>
+                                                <input
+                                                    type="number"
+                                                    name="price"
+                                                    defaultValue={modalData.price}
+                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                    placeholder="Enter price"
 
-                                        {/* Submit Button */}
-                                        <div className="text-center">
-                                            <button
-                                                disabled={loading}
-                                                type="submit"
-                                                className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition flex items-center justify-center"
-                                            >
-                                                {loading ? (
-                                                    <FaSpinner className="animate-spin mr-2" /> // Spinner when loading
-                                                ) : (
-                                                    'Add Product'
-                                                )}
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                                {/*footer*/}
-                                {/* <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                                />
+                                            </div>
+
+                                            {/* Quantity */}
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700">Quantity</label>
+                                                <input
+                                                    type="number"
+                                                    name="quantity"
+                                                    defaultValue={modalData.quantity}
+                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                    placeholder="Enter quantity"
+
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700">Product Image</label>
+                                                {
+                                                    isImageChange ?
+                                                        <div className="flex">
+                                                            <input
+                                                                type="file"
+                                                                name="image"
+                                                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+
+                                                            />
+
+                                                            <span onClick={() => setIsImageChange(false)} className="inline-block px-3 pt-3 cursor-pointer bg-red-400 rounded-md pt">Change</span>
+
+                                                        </div>
+                                                        :
+                                                        <div className="relative">
+                                                            <img src={imageLink} alt="" className="size-16 inline-block" />
+                                                            <span onClick={() => setIsImageChange(true)} className="absolute -top-1 left-11 cursor-pointer text-xl font-bold  ">x</span>
+                                                        </div>
+                                                }
+                                            </div>
+
+
+
+                                            {/* Submit Button */}
+                                            <div className="text-center">
+                                                <button
+                                                    disabled={loading}
+                                                    type="submit"
+                                                    className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition flex items-center justify-center"
+                                                >
+                                                    {loading ? (
+                                                        <FaSpinner className="animate-spin mr-2" /> // Spinner when loading
+                                                    ) : (
+                                                        'Add Product'
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    {/*footer*/}
+                                    {/* <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                     <button
                                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
@@ -323,13 +333,14 @@ const ManageProduct = () => {
                                         Save Changes
                                     </button>
                                 </div> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                </>
-            ) : null}
-        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null
+            }
+        </div >
     );
 };
 

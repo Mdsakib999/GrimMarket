@@ -162,8 +162,13 @@ export const adminNavData = [
         link: '/admin/add-product',
     },
     {
-        id: "1",
+        id: "2",
         title: 'Menage Product',
         link: '/admin/menage-product',
+    },
+    {
+        id: "3",
+        title: 'Menage Users',
+        link: '/admin/menage-users',
     }
 ]
