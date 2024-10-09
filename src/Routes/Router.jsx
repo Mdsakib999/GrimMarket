@@ -20,6 +20,7 @@ import Referrals from "../Pages/Referrals/Referrals";
 import AddProduct from "../Pages/Add_Product/AddProduct";
 import AdminRoutes from "./AdminRoutes";
 import MenageProduct from "../Pages/Menage_Product/MenageProduct";
+import MenageUsers from "../Pages/MenageUsers/MenageUsers";
 
 
 export const router = createBrowserRouter([
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
             {
                 path: '/admin/menage-product',
                 element: <AdminRoutes><MenageProduct /></AdminRoutes>
+            },
+            {
+                path: '/admin/menage-users',
+                element: <AdminRoutes><MenageUsers /></AdminRoutes>
             }
 
         ]
