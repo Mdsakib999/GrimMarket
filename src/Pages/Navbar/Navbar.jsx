@@ -76,7 +76,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 <BsCart className="mr-1 text-[25px]" /> {/* Cart Icon */}
                 <span className="absolute -top-4 -right-2 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[10px] text-center text-sm">{cartArray.length}</span>
               </button>
-              
+
               {isAddToCartOpen && (
                 <div
                   ref={cartRef}
@@ -160,7 +160,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     </Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
-                    My orders
+                    <Link to={'/order'}>My orders</Link>
                   </li>
                   <li
                     onClick={() => dispatch(logOut())}

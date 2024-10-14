@@ -5,6 +5,7 @@ import { FaAngleRight, FaShoppingCart } from "react-icons/fa";
 import { AiOutlineEuro } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { increment } from "../../Redux/Features/AddToCart/addCartSlice";
+import toast from "react-hot-toast";
 
 const Card = ({ data }) => {
     const { title, image, price, quantity, _id } = data
@@ -13,6 +14,7 @@ const Card = ({ data }) => {
         const { title, image, price, quantity, _id } = data
         const incrementData = { title, price, _id }
         dispatch(increment(incrementData))
+        toast.success('Add to crt')
     }
     return (
         <div className=" h-full ">
