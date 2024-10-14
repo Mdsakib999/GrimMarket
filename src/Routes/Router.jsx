@@ -21,6 +21,7 @@ import AddProduct from "../Pages/Add_Product/AddProduct";
 import AdminRoutes from "./AdminRoutes";
 import MenageProduct from "../Pages/Menage_Product/MenageProduct";
 import MenageUsers from "../Pages/MenageUsers/MenageUsers";
+import Order from "../Pages/Order/Order";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path: "/addFunds",
                 element: <AddFunds />
+            },
+            {
+                path: "/order",
+                element: <Order />
             },
             {
                 path: "/user/settings",
