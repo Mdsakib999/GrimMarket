@@ -13,7 +13,7 @@ const CryptoExchanger = () => {
         return <div>Loading........</div>
     }
     return (
-        <div className="relative py-10 ps-3 ">
+        <div className="relative py-10  ">
             <div className="w-full fixed top-[65px] z-10 bg-[#181c30]  bg-opacity-95 ">
                 <div className="flex items-center p-4">
                     <p className="text-2xl  inline-block  border-white">{path}</p>
@@ -21,7 +21,7 @@ const CryptoExchanger = () => {
                     <p className="text-2xl  inline-block border-white">All Products of {path}</p>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center">
+            <div className="flex flex-wrap justify-evenly">
                 {
                     data?.data?.map((item, index) => <Card key={index} data={item} />
                     )}

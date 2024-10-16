@@ -28,7 +28,7 @@ const MainLayout = () => {
                 </span>
             </div>
 
-            <div className="md:ml-[245px] mt-[65px] px-3 ">
+            <div className="md:ml-[260px] mt-[65px]   ">
                 <Outlet />
             </div>
             <Toaster />
