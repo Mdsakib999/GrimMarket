@@ -19,35 +19,44 @@ const CaptchaComponent = ({ setIsCaptchaValid }) => {
         String.fromCharCode(Math.floor(Math.random() * (max - min + 1) + min));
 
     // Function to generate CAPTCHA text randomly
+    // Function to generate CAPTCHA text randomly with 5 characters
     const generateCaptchaText = () => {
         let captcha = '';
-        for (let i = 0; i < 3; i++) {
-            captcha += generateRandomChar(65, 90); // Uppercase letters
-            captcha += generateRandomChar(97, 122); // Lowercase letters
-            captcha += generateRandomChar(48, 57); // Numbers
+        for (let i = 0; i < 2; i++) {
+            captcha += generateRandomChar(65, 90); // 2 Uppercase letters
         }
-        // Shuffle characters and return the string
+        for (let i = 0; i < 2; i++) {
+            captcha += generateRandomChar(97, 122); // 2 Lowercase letters
+        }
+        captcha += generateRandomChar(48, 57); // 1 Number
+
+        // Shuffle characters and return the string (Total 5 characters)
         return captcha.split('').sort(() => Math.random() - 0.5).join('');
     };
 
+
     // Function to draw CAPTCHA text on the canvas
+    // Function to draw CAPTCHA text on the canvas and center it
     const drawCaptchaOnCanvas = (ctx, captcha) => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear canvas
-        const textColors = ['rgb(0,0,0)', 'rgb(130,130,130)'];     // Random text colors
-        const letterSpace = 150 / captcha.length;                  // Space between letters
+        const textColors = ['rgb(0,0,0)', 'rgb(130,130,130)']; // Random text colors
 
-        // Loop to draw each letter of the CAPTCHA on the canvas
-        for (let i = 0; i < captcha.length; i++) {
-            const xInitialSpace = 25;
-            ctx.font = '24px Roboto Mono';                        // Font style
-            ctx.fillStyle = textColors[Math.floor(Math.random() * textColors.length)]; // Random color
-            ctx.fillText(
-                captcha[i],                                        // Current character
-                xInitialSpace + i * letterSpace,                   // Horizontal position
-                Math.floor(Math.random() * 16 + 25)                // Vertical position
-            );
-        }
+        // Set font and alignment
+        ctx.font = '24px Roboto Mono'; // Font style
+        ctx.textBaseline = 'middle';   // Align text vertically to the middle
+        ctx.textAlign = 'center';      // Align text horizontally to the center
+
+        // Calculate the center position of the canvas
+        const canvasWidth = ctx.canvas.width;
+        const canvasHeight = ctx.canvas.height;
+        const centerX = canvasWidth / 2;
+        const centerY = canvasHeight / 2;
+
+        // Draw the CAPTCHA text centered on the canvas
+        ctx.fillStyle = textColors[Math.floor(Math.random() * textColors.length)]; // Random color
+        ctx.fillText(captcha, centerX, centerY); // Draw text centered at (centerX, centerY)
     };
+
 
     // Function to initialize or regenerate CAPTCHA
     const initializeCaptcha = (ctx) => {
@@ -78,7 +87,7 @@ const CaptchaComponent = ({ setIsCaptchaValid }) => {
                 <canvas
                     ref={canvasRef}
                     height="45"
-                    className="bg-gray-100 flex-1 rounded-md"
+                    className="bg-gray-100 flex-1  rounded-md"
                 ></canvas>
                 <span
                     className="cursor-pointer"
