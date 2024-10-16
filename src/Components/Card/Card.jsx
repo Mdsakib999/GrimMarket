@@ -51,12 +51,12 @@ const Card = ({ data }) => {
                   {card.stock}
                 </button>
               </Tooltip> */}
-                    <button className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600 ">
+                    <button onClick={() => handelAddToCart(data)} className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600 ">
                         <FaShoppingCart className="text-center mr-1 text-2xl" />
 
                     </button>
 
-                    <button onClick={() => handelAddToCart(data)} className="flex items-center justify-between ps-3 pe-4 py-3 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
+                    <button className="flex items-center justify-between ps-3 pe-4 py-3 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
                         <span>
                             {/* {card.stock === 0 ? "Out of stock" : "Purchase"} */} Buy Now
                         </span>

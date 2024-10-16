@@ -35,7 +35,6 @@ const CaptchaComponent = ({ setIsCaptchaValid }) => {
     };
 
 
-    // Function to draw CAPTCHA text on the canvas
     // Function to draw CAPTCHA text on the canvas and center it
     const drawCaptchaOnCanvas = (ctx, captcha) => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear canvas
