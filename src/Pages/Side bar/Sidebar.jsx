@@ -37,7 +37,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       >
         <ul   >
           <div className=" text-xl font-semibold text-center py-4 mb-2 bg-gradient-to-b from-[#060606]  via-[#04670c9f] to-[#040c05cc]">
-            Silent Market
+            Silent-Market
           </div>
 
           <li className="py-2 px-4">
