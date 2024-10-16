@@ -195,8 +195,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
           <div>
             <div>
-              <button onClick={handleProfileClick1} className="hover:text-[#36fc46]">
+              <button onClick={handleProfileClick1} className="hover:text-[#36fc46] relative">
                 <BsPerson />
+                <span className="absolute -top-3 -left-6 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[7px] text-center text-sm">{cartArray.length}</span>
               </button>
               {isAddToCartOpen1 && (
                 <div
