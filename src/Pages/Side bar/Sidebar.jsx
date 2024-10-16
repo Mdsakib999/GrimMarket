@@ -55,7 +55,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             </NavLink>
           </li>
 
-          <p className="text-gray-300 font-semibold text-lg mt-4 ps-3">Categories</p>
+          <p className="text-gray-300 font-semibold text-lg mt-4 ps-3">{role == 'customer' ? 'Categories' : 'Management'}</p>
 
           <div>
             {navData.map((item, index) => (
@@ -114,35 +114,38 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             ))}
           </div>
 
-          <div className="mb-24">
-            <p className="text-gray-300 font-semibold text-lg ps-3 py-2">Help</p>
-            <li className=" block px-4">
-              <NavLink
-                to="/support"
-                className={({ isActive }) =>
-                  isActive
-                    ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
-                    : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
-                }
-                onClick={() => setActiveLink("support")}
-              >
-                Support
-              </NavLink>
-            </li>
-            <li className=" block px-4">
-              <NavLink
-                to="/faq"
-                className={({ isActive }) =>
-                  isActive
-                    ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
-                    : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
-                }
-                onClick={() => setActiveLink("faq")}
-              >
-                FAQ
-              </NavLink>
-            </li>
-          </div>
+          {
+            role === 'customer' &&
+            <div className="mb-24">
+              <p className="text-gray-300 font-semibold text-lg ps-3 py-2">Help</p>
+              <li className=" block px-4">
+                <NavLink
+                  to="/support"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
+                      : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
+                  }
+                  onClick={() => setActiveLink("support")}
+                >
+                  Support
+                </NavLink>
+              </li>
+              <li className=" block px-4">
+                <NavLink
+                  to="/faq"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex py-3 ps-2 items-center justify-between bg-green-400 bg-opacity-20 border-l-4 border-green-500 text-green-500"
+                      : "flex py-3 ps-2  items-center justify-between hover:bg-green-400 hover:bg-opacity-20 hover:border-l-4 border-green-500"
+                  }
+                  onClick={() => setActiveLink("faq")}
+                >
+                  FAQ
+                </NavLink>
+              </li>
+            </div>
+          }
         </ul>
       </aside>
 

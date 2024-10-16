@@ -15,9 +15,13 @@ import { RxCross1 } from "react-icons/rx";
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false); // State to toggle profile dropdown
+  const [isProfileOpen1, setIsProfileOpen1] = useState(false); // State to toggle profile dropdown
   const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
+  const [isAddToCartOpen1, setIsAddToCartOpen1] = useState(false);
+  const profileRef1 = useRef(null);
   const profileRef = useRef(null);
   const cartRef = useRef(null);
+  const cartRef1 = useRef(null);
   const { userName, role } = useSelector((state) => state.auth);
   const cartArray = useSelector((state) => state.cart);
   console.log(cartArray);
@@ -26,14 +30,23 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const handleProfileClick = () => {
     setIsProfileOpen((prev) => !prev);
   };
+  const handleProfileClick1 = () => {
+    setIsProfileOpen1((prev) => !prev);
+  };
   // Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
       }
+      if (profileRef1.current && !profileRef1.current.contains(event.target)) {
+        setIsProfileOpen1(false);
+      }
       if (cartRef.current && !cartRef.current.contains(event.target)) {
         setIsAddToCartOpen(false);
+      }
+      if (cartRef1.current && !cartRef1.current.contains(event.target)) {
+        setIsAddToCartOpen1(false);
       }
     };
 
@@ -177,12 +190,98 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
         {/* Mobile Menu */}
         <div className="md:hidden flex space-x-4 items-center" >
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
-          <button className="hover:text-[#36fc46]">
+          <button onClick={() => setIsAddToCartOpen1(!isAddToCartOpen1)} className="hover:text-[#36fc46]">
             <BsCart />
           </button>
-          <button className="hover:text-[#36fc46]">
-            <BsPerson />
-          </button>
+          <div>
+            <div>
+              <button onClick={handleProfileClick1} className="hover:text-[#36fc46]">
+                <BsPerson />
+              </button>
+              {isAddToCartOpen1 && (
+                <div
+                  ref={cartRef1}
+                  className="absolute  right-5 top-10 mt-2 w-[250px] overflow-y-auto h-[200px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+                >
+                  <div>
+                    <div className="flex justify-between">
+                      <p className="font-semibold text-xl">My Carts</p>
+                      <button
+                        onClick={() => dispatch(resetCart())}
+                        className="bg-red-600 bg-opacity-10  text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600  text-sm px-3  py-1 rounded-md "
+                      >
+                        Clear All
+                      </button>
+                    </div>
+                    <div>
+                      {cartArray?.map((item, index) => (
+                        <div className="flex justify-between  text-sm mt-4" key={index}>
+                          <p>
+                            {index + 1}. {item.title}{" "}
+                          </p>
+                          <p className=" flex items-center gap-x-4">
+                            {item.quantity} / {item.totalPrice}{" "}
+                            {/* <span
+                            className=" px-2 text-xl font-semibold"
+                            onClick={() => dispatch(decrement(item._id))}
+                          >
+                            
+                          </span> */}
+                            <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            {isProfileOpen1 && (
+              <div
+                ref={profileRef1}
+                className="absolute right-0 top-10 mt-2 w-48 bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+              >
+                <div className="flex items-center space-x-2 mb-3">
+                  <div className="bg-green-500 rounded-full  flex items-center justify-center p-1 ">
+                    <span>
+                      <BsPerson className=" text-3xl" />
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-bold">{userName}</p>
+                    <p className="text-sm text-green-400">
+                      {role === "customer"
+                        ? "user"
+                        : role === "admin"
+                          ? "admin"
+                          : ""}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-400">No contacts</p>
+                <hr className="my-2 border-gray-600" />
+                <ul className="space-y-2">
+                  <li className="hover:text-green-400 cursor-pointer">
+                    <Link to={"/user/settings"}>My settings</Link>
+                  </li>
+                  <li className="hover:text-green-400 cursor-pointer">
+                    <Link to={'/user/referrals'}>
+                      My referrals
+                    </Link>
+                  </li>
+                  <li className="hover:text-green-400 cursor-pointer">
+                    <Link to={'/order'}>My orders</Link>
+                  </li>
+                  <li
+                    onClick={() => dispatch(logOut())}
+                    className="hover:text-green-400 cursor-pointer"
+                  >
+                    Logout
+                  </li>
+                </ul >
+              </div >
+            )}
+          </div>
         </div >
       </div >
     </nav >
