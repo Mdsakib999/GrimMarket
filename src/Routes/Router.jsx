@@ -22,6 +22,7 @@ import AdminRoutes from "./AdminRoutes";
 import MenageProduct from "../Pages/Menage_Product/MenageProduct";
 import MenageUsers from "../Pages/MenageUsers/MenageUsers";
 import Order from "../Pages/Order/Order";
+import Checkout from "../Pages/Checkout/Checkout";
 import Home from "../Pages/Home/Home";
 
 
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
             {
                 path: "/order",
                 element: <Order />
+            },
+            {
+                path: "/checkout",
+                element: <Checkout />
             },
             {
                 path: "/user/settings",

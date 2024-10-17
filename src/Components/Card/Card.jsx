@@ -4,7 +4,7 @@ import { AiFillDollarCircle } from "react-icons/ai";
 import { FaAngleRight, FaShoppingCart } from "react-icons/fa";
 import { AiOutlineEuro } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { increment } from "../../Redux/Features/AddToCart/addCartSlice";
+import { increment, resetCart } from "../../Redux/Features/AddToCart/addCartSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -20,9 +20,9 @@ const Card = ({ data }) => {
     }
     const handelByNow = (data) => {
         const { title, image, price, quantity, _id } = data
-        const incrementData = { title, price, _id }
-        dispatch(increment(incrementData))
-        navigate('/order')
+        const incrementData = { title, price, _id, quantity: 1 }
+        dispatch(resetCart())
+        navigate('/checkout', { state: { incrementData } })
     }
     return (
         <div className=" h-full ">

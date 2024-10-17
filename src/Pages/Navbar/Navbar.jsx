@@ -92,39 +92,45 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
               {isAddToCartOpen && (
                 <div
                   ref={cartRef}
-                  className="absolute right-0 top-10 mt-2 w-[400px] overflow-y-auto h-[500px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+                  className="absolute right-0 top-10 mt-2 w-[400px] overflow-hidden h-[500px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 flex flex-col"
                 >
-                  <div>
+                  <div className="flex-grow overflow-y-auto">
                     <div className="flex justify-between">
                       <p className="font-semibold text-xl">My Carts</p>
                       <button
                         onClick={() => dispatch(resetCart())}
-                        className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600  text-base px-3  py-1 rounded-md "
+                        className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600 text-base px-3 py-1 rounded-md"
                       >
                         Clear All
                       </button>
                     </div>
                     <div>
                       {cartArray?.map((item, index) => (
-                        <div className="flex justify-between  mt-4" key={index}>
+                        <div className="flex justify-between mt-4" key={index}>
                           <p>
                             {index + 1}. {item.title}{" "}
                           </p>
-                          <p className=" flex items-center gap-x-4">
+                          <p className="flex items-center gap-x-4">
                             {item.quantity} / {item.totalPrice}{" "}
-                            {/* <span
-                            className=" px-2 text-xl font-semibold"
-                            onClick={() => dispatch(decrement(item._id))}
-                          >
-                            
-                          </span> */}
                             <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
                           </p>
                         </div>
                       ))}
                     </div>
                   </div>
+                  {/* Checkout Button Fixed at Bottom */}
+                  <div className="mt-4">
+                    <Link to="/checkout">
+                      <button className="w-full bg-blue-600 text-white text-base px-4 py-2 rounded-md hover:bg-blue-700">
+                        Checkout
+                      </button>
+                    </Link>
+                  </div>
                 </div>
+
+
+
+
               )}
             </div>
           }
@@ -190,14 +196,14 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
         <div className="md:hidden flex space-x-5 items-center " >
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
           <button onClick={() => setIsAddToCartOpen1(!isAddToCartOpen1)} className="hover:text-[#36fc46] relative">
-            <BsCart className="text-3xl"/>
+            <BsCart className="text-3xl" />
             <span className=" absolute -top-2 left- bg-slate-700  text-[#36fc46] rounded-full py-[3px] px-[7px] text-center  text-xs">{cartArray.length}</span>
           </button>
           <div>
             <div>
               <button onClick={handleProfileClick1} className="hover:text-[#36fc46]">
-                <BsPerson className="text-4xl"/>
-                
+                <BsPerson className="text-4xl" />
+
               </button>
               {isAddToCartOpen1 && (
                 <div
