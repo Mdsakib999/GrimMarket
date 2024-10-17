@@ -20,7 +20,7 @@ const Card = ({ data }) => {
     }
     const handelByNow = (data) => {
         const { title, image, price, quantity, _id } = data
-        const incrementData = { title, price, _id, quantity: 1 }
+        const incrementData = { title, price, _id, quantity: 1, totalPrice: price }
         dispatch(resetCart())
         navigate('/checkout', { state: { incrementData } })
     }

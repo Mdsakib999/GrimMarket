@@ -1,17 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, quantityDecrement, quantityIncrement } from '../../Redux/Features/AddToCart/addCartSlice';
 import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const Checkout = () => {
     const cartArray = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const location = useLocation();
-    const buyNowData = location?.state?.incrementData ? [location?.state?.incrementData] : [];
+
+    // Initialize the buyNowData state using useState
+    const [buyNowData, setBuyNowData] = useState(location?.state?.incrementData ? [location?.state?.incrementData] : []);
 
     // Calculate total amount
     const totalAmount = cartArray.length > 0
         ? cartArray.reduce((acc, item) => acc + item.totalPrice, 0)
-        : buyNowData[0]?.price || 0;
+        : buyNowData[0]?.totalPrice || 0;
 
     // Handle checkout
     const handleCheckout = () => {
@@ -21,18 +24,23 @@ const Checkout = () => {
     };
 
     const itemsToDisplay = cartArray.length > 0 ? cartArray : buyNowData;
+
+    // Function to handle buyNowData increment
+
+
     return (
         <div className="flex flex-col h-full">
             {/* Total Amount and Checkout Button */}
             <div className="mt-4 flex gap-4 items-center justify-end me-7">
-                <h3 className="text-xl font-bold mb-2">Total Amount: ${totalAmount}</h3>
+                {/* <h3 className="text-xl font-bold mb-2">Total Amount: ${totalAmount}</h3> */}
                 <button
                     onClick={handleCheckout}
                     disabled={itemsToDisplay.length < 1}
-                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${itemsToDisplay.length < 1 && 'cursor-not-allowed'}`}
+                    className={`bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-200 ease-in-out active:scale-95 ${itemsToDisplay.length < 1 ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'}`}
                 >
-                    Proceed to Checkout
+                    Pay ${totalAmount.toFixed(2)}
                 </button>
+
             </div>
 
             {/* Cart Items Table */}
@@ -44,7 +52,7 @@ const Checkout = () => {
                             <th className="px-4 py-2">Price</th>
                             <th className="px-4 py-2">Quantity</th>
                             <th className="px-4 py-2">Total Price</th>
-                            {cartArray.length > 0 && <th className="px-4 py-2">Actions</th>}
+                            <th className="px-4 py-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,29 +61,62 @@ const Checkout = () => {
                                 <td className="px-4 py-2">{item?.title}</td>
                                 <td className="px-4 py-2">${item?.price}</td>
                                 <td className="px-4 py-2">{item?.quantity}</td>
-                                <td className="px-4 py-2">${item?.totalPrice || item?.price}</td>
-                                {cartArray.length > 0 && (
-                                    <td className="px-4 py-2 space-x-3">
-                                        <button
-                                            onClick={() => dispatch(quantityIncrement(item._id))}
-                                            className="bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded"
-                                        >
-                                            Increase
-                                        </button>
-                                        <button
-                                            onClick={() => dispatch(quantityDecrement(item._id))}
-                                            className="bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded"
-                                        >
-                                            Decrement
-                                        </button>
-                                        <button
-                                            onClick={() => dispatch(decrement(item._id))}
-                                            className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                )}
+                                <td className="px-4 py-2">${item?.totalPrice}</td>
+
+                                <td className="px-4 py-2 space-x-3">
+                                    <button
+                                        onClick={() => {
+                                            if (cartArray.length > 0) {
+                                                dispatch(quantityIncrement(item._id));
+                                            } else {
+                                                setBuyNowData(prevData => {
+                                                    const updatedData = [...prevData];  // Spread to avoid direct mutation
+                                                    updatedData[0].quantity = updatedData[0].quantity + 1;
+                                                    updatedData[0].totalPrice = updatedData[0].price * updatedData[0].quantity;
+                                                    return updatedData;
+                                                });
+                                            }
+                                        }}
+                                        className="bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded"
+                                    >
+                                        Increase
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            if (cartArray.length > 0) {
+
+                                                dispatch(quantityDecrement(item._id))
+                                            }
+                                            else {
+                                                setBuyNowData(prevData => {
+                                                    let updatedData = [...prevData];  // Spread to avoid direct mutation
+                                                    updatedData[0].quantity = updatedData[0].quantity - 1;
+                                                    updatedData[0].totalPrice = updatedData[0].price * updatedData[0].quantity;
+                                                    if (updatedData[0].quantity == 0) {
+                                                        updatedData = []
+                                                    }
+                                                    return updatedData;
+                                                });
+                                            }
+                                        }}
+                                        className="bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded"
+                                    >
+                                        Decrement
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            if (cartArray.length > 0) {
+                                                dispatch(decrement(item._id))
+                                            }
+                                            else {
+                                                setBuyNowData([])
+                                            }
+                                        }}
+                                        className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
