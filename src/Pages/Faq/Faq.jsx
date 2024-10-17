@@ -12,10 +12,10 @@ const Faq = () => {
 
     return (
         <section className="py-10 bg-gray-950">
-            <p className='text-4xl text-center mb-8 font-semibold text-gray-400'>Important Frequently Ask Question With Answer</p>
+            <p className='lg:text-4xl text-3xl text-center mb-8 font-semibold text-gray-400 lg:w-[50%] lg:mx-auto px-5 md:px-0'>Important Frequently Ask Question With Answer</p>
 
   
-          <div className='md:flex justify-center items-center gap-6 overflow-hidden md:overflow-visible '>
+          <div className='md:flex justify-center items-center gap-6 overflow-hidden md:overflow-visible px-5 md:px-0'>
 
   
             <div className="accordion-group  md:w-[60%] ">
