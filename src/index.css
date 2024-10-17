@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.b{
+  border: 2px solid red;
+}
+
 body {
   background-color: #1f2025;
   color: white;
@@ -30,5 +34,5 @@ body {
 /* For Firefox */
 * {
   scrollbar-width: thin; /* Thin scrollbar width */
-  scrollbar-color: green #99de6e; /* Thumb and track color */
+  scrollbar-color: rgb(4, 67, 4) #58843d; /* Thumb and track color */
 }
