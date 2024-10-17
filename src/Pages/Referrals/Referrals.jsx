@@ -10,7 +10,6 @@ import { useGetMeQuery } from "../../Redux/Features/Auth/authApi";
 const Referrals = () => {
     const { userName } = useSelector((state) => state.auth)
     const { data, isLoading } = useGetMeQuery(undefined, { skip: !userName, refetchOnFocus: true })
-    console.log(data);
     const secretRef = data?.data._id
     const [copyText, setCopyText] = useState('');
 
@@ -18,11 +17,9 @@ const Referrals = () => {
     useEffect(() => {
         if (secretRef) {
             const ref = btoa(secretRef)
-            console.log(atob(ref));
             setCopyText(`https://silent-market.com/register?ref=${ref}`);
         }
     }, [secretRef]);
-    console.log(copyText);
     const handleCopyText = (e) => {
         setCopyText(e.target.value);
     };

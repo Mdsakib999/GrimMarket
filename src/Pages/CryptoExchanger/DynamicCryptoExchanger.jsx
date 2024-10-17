@@ -2,6 +2,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useGetProductsQuery } from "../../Redux/Features/Products/productApi";
 import { capitalizeBusinessWise } from "../../utils/capitalizeBusinessWise";
 import Card from "../../Components/Card/Card";
+import Loading from "../../Components/Loading/Loading";
 
 const DynamicCryptoExchanger = () => {
     const { dynamic } = useParams()
@@ -10,9 +11,8 @@ const DynamicCryptoExchanger = () => {
     const categoryName = capitalizeBusinessWise(location.pathname.split('/')[1])
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
     const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: categoryName }, { name: 'subCategoryName', value: params }])
-    console.log(params);
     if (isLoading) {
-        return <div>Loading........</div>
+        return <Loading />
     }
     return (
         <div className="relative py-3">

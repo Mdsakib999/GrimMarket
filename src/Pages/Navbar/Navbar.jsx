@@ -24,7 +24,6 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const cartRef1 = useRef(null);
   const { userName, role } = useSelector((state) => state.auth);
   const cartArray = useSelector((state) => state.cart);
-  console.log(cartArray);
   const dispatch = useDispatch();
   // Toggle profile dropdown when the button is clicked
   const handleProfileClick = () => {
@@ -77,7 +76,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
             Add funds
           </Link>
           {
-            roleAbility && <button className="hover:text-[#36fc46]">Orders</button>
+            roleAbility && <button className="hover:text-[#36fc46]"><Link to={'/order'}>Orders</Link></button>
           }
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
           {

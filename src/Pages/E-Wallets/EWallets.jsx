@@ -2,13 +2,14 @@ import { useLocation } from "react-router-dom";
 import Card from "../../Components/Card/Card";
 import { useGetProductsQuery } from "../../Redux/Features/Products/productApi";
 import { capitalizeBusinessWise } from "../../utils/capitalizeBusinessWise";
+import Loading from "../../Components/Loading/Loading";
 
 const EWallets = () => {
     const location = useLocation()
     const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: "E-Wallets" }])
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
     if (isLoading) {
-        return <div>Loading........</div>
+        return <Loading />
     }
     return (
         <div className="relative py-10  ">

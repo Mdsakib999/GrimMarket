@@ -18,7 +18,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);  // Captcha validation state
-  console.log(isCaptchaValid);
   const {
     register,
     handleSubmit,

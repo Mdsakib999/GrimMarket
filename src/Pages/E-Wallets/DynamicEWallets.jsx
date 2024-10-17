@@ -2,15 +2,15 @@ import { useParams } from "react-router-dom";
 import { capitalizeBusinessWise } from "../../utils/capitalizeBusinessWise";
 import { useGetProductsQuery } from "../../Redux/Features/Products/productApi";
 import Card from "../../Components/Card/Card";
+import Loading from "../../Components/Loading/Loading";
 
 const DynamicEWallets = () => {
     const { dynamic } = useParams()
     const params = capitalizeBusinessWise(dynamic)
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
     const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: "E-Wallets" }, { name: 'subCategoryName', value: params }])
-    console.log(params);
     if (isLoading) {
-        return <div>Loading........</div>
+        return <Loading />
     }
     return (
         <div className="relative py-3  ">

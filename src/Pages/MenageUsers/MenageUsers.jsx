@@ -4,7 +4,6 @@ const MenageUsers = () => {
     const { data, refetch } = useGetAllUsersQuery()
     const [deleteUser] = useDeleteAUserMutation()
     const handelDelete = async (id) => {
-        console.log(id);
         const res = await deleteUser(id)
         if (res) {
             refetch()

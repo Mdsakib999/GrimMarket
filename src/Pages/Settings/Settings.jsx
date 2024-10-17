@@ -16,14 +16,12 @@ const Settings = () => {
         const currentPassword = form.currentPassword.value
         const newPassword = form.newPassword.value
         const confirmPassword = form.confirmPassword.value
-        console.log(confirmPassword);
         if (newPassword !== confirmPassword) {
             return toast.error("Password doesn't Match", { id: toastId })
         }
         else {
             const data = { currentPassword, newPassword, userName }
             const res = await uploadpassword(data)
-            console.log(res);
             if (res.data) {
                 toast.success('Password update Successfully', { id: toastId })
             }
