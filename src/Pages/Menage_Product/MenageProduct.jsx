@@ -36,7 +36,6 @@ const ManageProduct = () => {
         else {
             updateData.image = imageLink
         }
-        console.log(updateData);
         const res = await editData({ updateData, id })
         if (res.data) {
             refetch()

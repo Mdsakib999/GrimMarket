@@ -6,15 +6,23 @@ import { AiOutlineEuro } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { increment } from "../../Redux/Features/AddToCart/addCartSlice";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ data }) => {
     const { title, image, price, quantity, _id } = data
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handelAddToCart = (data) => {
         const { title, image, price, quantity, _id } = data
         const incrementData = { title, price, _id }
         dispatch(increment(incrementData))
         toast.success('Add to crt')
+    }
+    const handelByNow = (data) => {
+        const { title, image, price, quantity, _id } = data
+        const incrementData = { title, price, _id }
+        dispatch(increment(incrementData))
+        navigate('/order')
     }
     return (
         <div className=" h-full ">
@@ -56,7 +64,7 @@ const Card = ({ data }) => {
 
                     </button>
 
-                    <button className="flex items-center justify-between ps-3 pe-4 py-3 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
+                    <button onClick={() => handelByNow(data)} className="flex items-center justify-between ps-3 pe-4 py-3 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white">
                         <span>
                             {/* {card.stock === 0 ? "Out of stock" : "Purchase"} */} Buy Now
                         </span>
