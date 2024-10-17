@@ -61,7 +61,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const roleAbility = role === 'customer'
 
   return (
-    <nav className="bg-gray-900 text-white py-4 fixed top-0 w-full z-20 px-10 ">
+    <nav className="bg-gray-900 text-white py-3 md:py-4 fixed top-0 w-full z-20 md:px-10 px-5">
       <div className="container mx-auto flex justify-between items-center">
         {/* Left Side: Grim Market */}
         {/* <div className="text-xl font-semibold bg-gradient-to-b from-[#060606]  via-[#038e0eca] to-[#163019cc] bg-opacity-10">
@@ -188,16 +188,17 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
         </div >
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex space-x-4 items-center" >
+        <div className="md:hidden flex space-x-5 items-center " >
           <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
-          <button onClick={() => setIsAddToCartOpen1(!isAddToCartOpen1)} className="hover:text-[#36fc46]">
-            <BsCart />
+          <button onClick={() => setIsAddToCartOpen1(!isAddToCartOpen1)} className="hover:text-[#36fc46] relative">
+            <BsCart className="text-3xl"/>
+            <span className=" absolute -top-2 left- bg-slate-700  text-[#36fc46] rounded-full py-[3px] px-[7px] text-center  text-xs">{cartArray.length}</span>
           </button>
           <div>
             <div>
-              <button onClick={handleProfileClick1} className="hover:text-[#36fc46] relative">
-                <BsPerson />
-                <span className="absolute -top-3 -left-6 bg-slate-700  text-[#36fc46] rounded-full py-1 px-[7px] text-center text-sm">{cartArray.length}</span>
+              <button onClick={handleProfileClick1} className="hover:text-[#36fc46]">
+                <BsPerson className="text-4xl"/>
+                
               </button>
               {isAddToCartOpen1 && (
                 <div

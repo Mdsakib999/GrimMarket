@@ -5,7 +5,7 @@ const Modal = ({ isOpen, onClose, title }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 ">
       <div className="bg-gray-800 p-6 rounded-lg w-[45%]">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold py-3">{title}</h2>
@@ -57,15 +57,15 @@ const Support = () => {
   return (
     <div>
       <p className="text-3xl pt-6 text-center font-semibold text-gray-400">
-        Premium Support
+        Our Support
       </p>
 
-      <div className="mt-16 flex justify-center gap-x-20 py-6">
+      <div className="mt-16 md:flex justify-center gap-x-20 py-6 text-center px-10 md:px-0 ">
         <div
           onClick={() => openModal("Emergency Support")}
-          className="border border-green-500 text-lg font-semibold hover:text-green-500 py-5 px-10 rounded-md bg-green-600 bg-opacity-10 cursor-pointer"
+          className="mb-16 md:mb-0 border border-green-500  text-lg font-semibold hover:text-green-500 py-5 px-10 rounded-md bg-green-600 bg-opacity-10 cursor-pointer"
         >
-          <MdOutlineSupportAgent className="text-6xl mx-auto mb-2" />
+          <MdOutlineSupportAgent className="text-5xl mx-auto mb-2" />
           <p>Emergency Support</p>
         </div>
         <div

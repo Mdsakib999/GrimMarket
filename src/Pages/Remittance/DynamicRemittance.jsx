@@ -18,9 +18,9 @@ const DynamicRemittance = () => {
         <div className="relative py-3  ">
             <div className="w-full fixed top-[65px] z-10 bg-[#181c30] bg-opacity-95 ">
                 <div className="flex items-center p-4">
-                    <p className="text-base md:text-2xl  inline-block  border-white">{path}</p>
+                    <p className="text-lg md:text-xl lg:text-2xl inline-block  border-white">{path}</p>
                     <span className="bg-white inline-block h-[40px] w-[3px] mx-5">,</span>
-                    <p className="text-base md:text-2xl  inline-block border-white">{params}</p>
+                    <p className="text-lg md:text-xl lg:text-2xl inline-block border-white">{params}</p>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center">
