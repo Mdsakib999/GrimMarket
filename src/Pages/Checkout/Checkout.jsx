@@ -16,7 +16,6 @@ const Checkout = () => {
   const [buyNowData, setBuyNowData] = useState(
     location?.state?.incrementData ? [location?.state?.incrementData] : []
   );
-
   // Calculate total amount
   const totalAmount =
     cartArray.length > 0
@@ -39,7 +38,7 @@ const Checkout = () => {
 
   return (
     <div className="flex flex-col h-full">
-      
+
 
       {/* Cart Items Table */}
       <div className="overflow-x-auto flex-grow mt-4">
@@ -71,13 +70,21 @@ const Checkout = () => {
                           dispatch(quantityIncrement(item._id));
                         } else {
                           setBuyNowData((prevData) => {
-                            const updatedData = [...prevData]; // Spread to avoid direct mutation
-                            updatedData[0].quantity =
-                              updatedData[0].quantity + 1;
-                            updatedData[0].totalPrice =
-                              updatedData[0].price * updatedData[0].quantity;
+                            const updatedData = [...prevData]; // Spread prevData to avoid mutation
+
+                            if (updatedData.length > 0) {
+                              const updatedItem = {
+                                ...updatedData[0], // Spread the object to avoid mutation
+                                quantity: updatedData[0].quantity + 1,
+                                totalPrice: updatedData[0].price * (updatedData[0].quantity + 1),
+                              };
+
+                              updatedData[0] = updatedItem; // Replace the first item with updated item
+                            }
+
                             return updatedData;
                           });
+
                         }
                       }}
                       className="bg-green-600 hover:bg-green-500 text-white px-2 rounded font-bold text-xl"
@@ -93,16 +100,24 @@ const Checkout = () => {
                           dispatch(quantityDecrement(item._id));
                         } else {
                           setBuyNowData((prevData) => {
-                            let updatedData = [...prevData]; // Spread to avoid direct mutation
-                            updatedData[0].quantity =
-                              updatedData[0].quantity - 1;
-                            updatedData[0].totalPrice =
-                              updatedData[0].price * updatedData[0].quantity;
+                            let updatedData = [...prevData]; // Spread prevData to avoid mutation
+
+                            if (updatedData.length > 0) {
+                              const updatedItem = {
+                                ...updatedData[0], // Spread the object to avoid mutation
+                                quantity: updatedData[0].quantity - 1,
+                                totalPrice: updatedData[0].price * (updatedData[0].quantity - 1),
+                              };
+
+                              updatedData[0] = updatedItem; // Replace the first item with updated item
+                            }
                             if (updatedData[0].quantity == 0) {
                               updatedData = [];
                             }
+
                             return updatedData;
                           });
+
                         }
                       }}
                       className="bg-green-600 hover:bg-green-500 text-white px-2 rounded font-bold text-xl"
@@ -139,11 +154,10 @@ const Checkout = () => {
         <button
           onClick={handleCheckout}
           disabled={itemsToDisplay.length < 1}
-          className={`bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-200 ease-in-out active:scale-95 ${
-            itemsToDisplay.length < 1
-              ? "opacity-50 cursor-not-allowed"
-              : "hover:shadow-xl"
-          }`}
+          className={`bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform transition-transform duration-200 ease-in-out active:scale-95 ${itemsToDisplay.length < 1
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:shadow-xl"
+            }`}
         >
           Pay ${totalAmount.toFixed(2)}
         </button>
