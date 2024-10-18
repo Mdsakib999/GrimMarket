@@ -2,17 +2,17 @@ import { useLocation, useParams } from "react-router-dom";
 import { useGetProductsQuery } from "../../Redux/Features/Products/productApi";
 import { capitalizeBusinessWise } from "../../utils/capitalizeBusinessWise";
 import Card from "../../Components/Card/Card";
+import Loading from './../../Components/Loading/Loading';
 
 const DynamicAccounts = () => {
     const { dynamic } = useParams()
     const params = capitalizeBusinessWise(dynamic)
     const location = useLocation()
     const path = capitalizeBusinessWise(location.pathname.split('/')[1])
-    console.log(params);
     // const categoryName = capitalizeBusinessWise(location.pathname.split('/')[1])
     const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: "Accounts" }, { name: 'subCategoryName', value: params }])
     if (isLoading) {
-        return <div>Loading........</div>
+        return <Loading />
     }
     return (
         <div className="relative py-3 ps- ">

@@ -14,7 +14,6 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false)
   const ref = location.search.split('=')[1]
   const [registerUser] = useUserRegisterMutation()
-  console.log(ref);
   // Initialize useForm hook from react-hook-form
   const {
     register,
@@ -31,13 +30,11 @@ const Register = () => {
       ...data,
       ref
     }
-    console.log(registrationData);
 
     try {
       // Call the registerUser API (replace this with your actual API call)
 
       const res = await registerUser(registrationData);
-      console.log(res);
       // If registration is successful
       if (res.data && res.data.success) {
         // Update the loading toast to success

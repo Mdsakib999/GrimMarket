@@ -22,6 +22,7 @@ import AdminRoutes from "./AdminRoutes";
 import MenageProduct from "../Pages/Menage_Product/MenageProduct";
 import MenageUsers from "../Pages/MenageUsers/MenageUsers";
 import Order from "../Pages/Order/Order";
+import Home from "../Pages/Home/Home";
 
 
 export const router = createBrowserRouter([
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <ProductsUpdates />
+                element: <Home />
             },
             {
                 path: "/accounts",

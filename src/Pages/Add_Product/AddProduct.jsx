@@ -59,7 +59,6 @@ const AddProduct = () => {
 
                 // Call the API to create the product
                 const res = await createProduct(updatedFormData);
-                console.log(res);
                 if (res.data) {
                     toast.success('Product uploaded successfully', { id: toastId });
                 } else {

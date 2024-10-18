@@ -6,6 +6,11 @@ export default {
       textShadow: {
         custom: "1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue",
       },
+      animation: {
+        bounce: "bounce 0.5s infinite",
+        bounce200: "bounce 0.5s infinite 0.1s",
+        bounce400: "bounce 0.5s infinite 0.2s",
+      },
     },
   },
   plugins: [
