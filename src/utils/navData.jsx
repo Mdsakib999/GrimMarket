@@ -13,7 +13,7 @@ export const customerNavData = [
             },
             {
                 id: '12',
-                title: 'personal Wise',
+                title: 'Personal Wise',
                 link: '/accounts/personal-wise'
             },
         ]

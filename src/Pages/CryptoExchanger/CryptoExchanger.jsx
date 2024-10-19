@@ -22,7 +22,7 @@ const CryptoExchanger = () => {
                     <p className="text-lg md:text-xl lg:text-2xl inline-block border-white">All Products of {path}</p>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-evenly">
+            <div className="flex flex-wrap justify-center">
                 {
                     data?.data?.map((item, index) => <Card key={index} data={item} />
                     )}
