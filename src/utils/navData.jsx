@@ -25,7 +25,7 @@ export const customerNavData = [
         children: [
             {
                 id: '21',
-                title: 'NoOnes',
+                title: 'Noones',
                 link: '/crypto-exchanger/noOnes'
             },
             {
