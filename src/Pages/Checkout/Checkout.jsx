@@ -45,11 +45,11 @@ const Checkout = () => {
         <table className="table-auto w-full text-left text-sm">
           <thead>
             <tr className="bg-gray-800 text-white text-center">
-              <th className="px-4 py-2">Product</th>
-              <th className="px-4 py-2">Price</th>
-              <th className="px-4 py-2">Quantity</th>
-              <th className="px-4 py-2">Total Price</th>
-              <th className="px-4 py-2">Actions</th>
+              <th className="px-4 py-2 lg:text-xl">Product</th>
+              <th className="px-4 py-2 lg:text-xl">Price</th>
+              <th className="px-4 py-2 lg:text-xl">Quantity</th>
+              <th className="px-4 py-2 lg:text-xl">Total Price</th>
+              <th className="px-4 py-2 lg:text-xl">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -58,9 +58,9 @@ const Checkout = () => {
                 key={item?._id}
                 className="border-b border-gray-200 text-center"
               >
-                <td className="px-4 py-2">{item?.title}</td>
-                <td className="px-4 py-2">$ {item?.price}</td>
-                <td className="px-4 py-2  flex justify-evenly items-center">
+                <td className="sm:px-4 py-3 ">{item?.title}</td>
+                <td className="sm:px-4 py-3">$ {item?.price}</td>
+                <td className="sm:px-4 py-3  flex justify-evenly items-center">
                   {" "}
                   <span>
                     {" "}
@@ -87,7 +87,7 @@ const Checkout = () => {
 
                         }
                       }}
-                      className="bg-green-600 hover:bg-green-500 text-white px-2 rounded font-bold text-xl"
+                      className="bg-green-600 hover:bg-green-500 text-white px-2 rounded font-bold text-xl me-1 sm:me-0"
                     >
                       +
                     </button>
@@ -120,15 +120,15 @@ const Checkout = () => {
 
                         }
                       }}
-                      className="bg-green-600 hover:bg-green-500 text-white px-2 rounded font-bold text-xl"
+                      className="bg-green-600 hover:bg-green-500 text-white px-2 rounded font-bold text-xl ms-1 sm:ms-0"
                     >
                       -
                     </button>
                   </span>
                 </td>
-                <td className="px-4 py-2">$ {item?.totalPrice}</td>
+                <td className="sm:px-4 py-3">$ {item?.totalPrice}</td>
 
-                <td className="px-4 py-2 space-x-3">
+                <td className="sm:px-4 px-1 py-3 space-x-3 ">
                   <button
                     onClick={() => {
                       if (cartArray.length > 0) {
@@ -149,8 +149,8 @@ const Checkout = () => {
       </div>
 
       {/* Total Amount and Checkout Button */}
-      <div className="mt-8 flex gap-4 items-center justify-center me-7">
-        <h3 className="text-xl font-semibold mb-2 text-gray-200">Total Amount : $ {totalAmount}</h3>
+      <div className="mt-8 flex flex-col gap-4 items-center justify-center me-7">
+        <h3 className="text-2xl font-semibold mb-2 text-gray-200">Total Amount : $ {totalAmount}</h3>
         <button
           onClick={handleCheckout}
           disabled={itemsToDisplay.length < 1}
@@ -159,7 +159,7 @@ const Checkout = () => {
             : "hover:shadow-xl"
             }`}
         >
-          Pay ${totalAmount.toFixed(2)}
+          Pay Now ${totalAmount.toFixed(2)}
         </button>
       </div>
     </div>
