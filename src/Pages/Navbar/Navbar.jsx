@@ -58,7 +58,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
     setSidebarOpen(!sidebarOpen);
   };
   const roleAbility = role === 'customer'
-
+  const totalPrice = cartArray.reduce((acc, item) => acc + item.totalPrice, 0)
   return (
     <nav className="bg-gray-900 text-white py-3 md:py-4 fixed top-0 w-full z-20 md:px-10 px-5">
       <div className="container mx-auto flex justify-between items-center">
@@ -120,6 +120,11 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                   </div>
                   {/* Checkout Button Fixed at Bottom */}
                   <div className="mt-4">
+                    <hr />
+                    <div className="mb-2 flex justify-between">
+                      <p className="text-xl">Subtotal:</p>
+                      <p>{totalPrice}</p>
+                    </div>
                     <Link to="/checkout">
                       <button className="w-full bg-blue-600 text-white text-base px-4 py-2 rounded-md hover:bg-blue-700">
                         Checkout
@@ -127,10 +132,6 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     </Link>
                   </div>
                 </div>
-
-
-
-
               )}
             </div>
           }
@@ -208,37 +209,44 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
               {isAddToCartOpen1 && (
                 <div
                   ref={cartRef1}
-                  className="absolute  right-5 top-10 mt-2 w-[250px] overflow-y-auto h-[200px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 "
+                  className="absolute right-3 top-10 mt-2 w-[250px] overflow-hidden h-[300px] bg-[#1c1c1c] border border-gray-600 text-white rounded-lg shadow-lg z-50 p-4 flex flex-col"
                 >
-                  <div>
+                  <div className="flex-grow overflow-y-auto">
                     <div className="flex justify-between">
                       <p className="font-semibold text-xl">My Carts</p>
                       <button
                         onClick={() => dispatch(resetCart())}
-                        className="bg-red-600 bg-opacity-10  text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600  text-sm px-3  py-1 rounded-md "
+                        className="bg-red-600 bg-opacity-10 text-red-600 hover:bg-[#DC2626] hover:text-white border border-red-600 text-base px-3 py-1 rounded-md"
                       >
                         Clear All
                       </button>
                     </div>
                     <div>
                       {cartArray?.map((item, index) => (
-                        <div className="flex justify-between  text-sm mt-4" key={index}>
+                        <div className="flex justify-between mt-4" key={index}>
                           <p>
                             {index + 1}. {item.title}{" "}
                           </p>
-                          <p className=" flex items-center gap-x-4">
+                          <p className="flex items-center gap-x-4">
                             {item.quantity} / {item.totalPrice}{" "}
-                            {/* <span
-                            className=" px-2 text-xl font-semibold"
-                            onClick={() => dispatch(decrement(item._id))}
-                          >
-                            
-                          </span> */}
                             <RxCross1 onClick={() => dispatch(decrement(item._id))} className="text-red-600 hover:text-red-500 text-xl cursor-pointer" />
                           </p>
                         </div>
                       ))}
                     </div>
+                  </div>
+                  {/* Checkout Button Fixed at Bottom */}
+                  <div className="mt-4">
+                    <hr />
+                    <div className="mb-2 flex justify-between">
+                      <p className="text-xl">Subtotal:</p>
+                      <p>{totalPrice}</p>
+                    </div>
+                    <Link to="/checkout">
+                      <button className="w-full bg-blue-600 text-white text-base px-4 py-2 rounded-md hover:bg-blue-700">
+                        Checkout
+                      </button>
+                    </Link>
                   </div>
                 </div>
               )}

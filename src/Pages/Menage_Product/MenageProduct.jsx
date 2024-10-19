@@ -4,6 +4,7 @@ import { categoriesArray, subcategories } from "../../utils/categoryItem";
 import { FaSpinner } from "react-icons/fa";
 import { cloudinaryUpload } from "../../utils/getImageLink";
 import toast from "react-hot-toast";
+import Loading from './../../Components/Loading/Loading';
 
 const ManageProduct = () => {
     const [editData] = useEditProductMutation()
@@ -56,6 +57,7 @@ const ManageProduct = () => {
         if (proceed) {
             const res = await deleteProduct(id)
             if (res) {
+                toast.success('Successfully  Delete')
                 refetch()
             }
         }
@@ -69,11 +71,11 @@ const ManageProduct = () => {
     }
 
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Loading />;
     if (error) return <div>Error loading products</div>;
 
     return (
-        <div className="container mx-auto px-4 ">
+        <div className="container mx-auto overflow-x-auto px-4 ">
             <h1 className="text-2xl font-bold mb-4 text-white">Manage Products</h1>
 
             {/* Filter Form */}
@@ -162,7 +164,7 @@ const ManageProduct = () => {
 
 
             {/* Products Table */}
-            <table className="min-w-full bg-white border rounded-md text-black mt-8 ">
+            <table className="min-w-full overflow-x-auto bg-white border rounded-md text-black mt-8 ">
                 <thead>
                     <tr>
                         <th className="py-2 px-4 border">Title</th>
@@ -212,7 +214,7 @@ const ManageProduct = () => {
                         <div
                             className="justify-center  text-black items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                         >
-                            <div className="relative w-[50%] my-6 mx-auto max-w-3xl">
+                            <div className="relative md:w-[50%] my-6 mx-auto max-w-3xl">
                                 {/*content*/}
                                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                     {/*header*/}
