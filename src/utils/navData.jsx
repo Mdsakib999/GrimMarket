@@ -13,7 +13,7 @@ export const customerNavData = [
             },
             {
                 id: '12',
-                title: 'personal Wise',
+                title: 'Personal Wise',
                 link: '/accounts/personal-wise'
             },
         ]
@@ -25,7 +25,7 @@ export const customerNavData = [
         children: [
             {
                 id: '21',
-                title: 'NoOnes',
+                title: 'Noones',
                 link: '/crypto-exchanger/noOnes'
             },
             {

@@ -6,31 +6,36 @@ import toast from 'react-hot-toast';
 import { FaSpinner } from 'react-icons/fa';
 
 const AddProduct = () => {
-    const [createProduct] = useCreateProductMutation()
-    const [loading, setLoading] = useState(false)
+    const [createProduct] = useCreateProductMutation();
+    const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState('');
-    const [formData, setFormData] = useState({
+
+    // Initial form state
+    const initialFormData = {
         title: '',
         image: null,
         price: '',
         quantity: '',
         categoryName: '',
         subCategoryName: '',
-    });
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+
     const categoryOptions = categoriesArray.map(item => (
         {
             value: item.title,
             option: item.title
         }
-    ))
-    const subCategoryOptions = subcategories.filter(item => item.categoryName === category)
+    ));
+    const subCategoryOptions = subcategories.filter(item => item.categoryName === category);
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: files ? files[0] : value,
         }));
-
     };
 
     const handleSubmit = async (e) => {
@@ -44,23 +49,23 @@ const AddProduct = () => {
 
             if (imgLink) {
                 // Update formData image with the Cloudinary URL
-                setFormData((prevData) => ({
-                    ...prevData,
-                    image: imgLink.secure_url,
-                }));
-
-                // Make sure to pass updated formData for product creation
                 const updatedFormData = {
                     ...formData,
                     image: imgLink.secure_url,
+                    quantity: Number(formData.quantity),
+                    price: Number(formData.price),
                 };
-                updatedFormData.quantity = Number(updatedFormData.quantity)
-                updatedFormData.price = Number(updatedFormData.price)
 
                 // Call the API to create the product
                 const res = await createProduct(updatedFormData);
                 if (res.data) {
                     toast.success('Product uploaded successfully', { id: toastId });
+
+                    // Reset the form state
+                    setFormData(initialFormData);
+
+                    // Reset file input in the form
+                    e.target.reset();
                 } else {
                     toast.error('Something went wrong while uploading the product', { id: toastId });
                 }
@@ -74,7 +79,6 @@ const AddProduct = () => {
             setLoading(false);
         }
     };
-
 
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-50 text-black">
@@ -153,7 +157,6 @@ const AddProduct = () => {
                             {
                                 categoryOptions.map((item, index) => <option key={index} value={item.value}>{item.option}</option>)
                             }
-
                         </select>
                     </div>
 
@@ -171,24 +174,6 @@ const AddProduct = () => {
                             {
                                 subCategoryOptions?.map((item, index) => <option key={index} value={item.subCategory}>{item.subCategory}</option>)
                             }
-                            {/* {category === 'electronics' && (
-                                <>
-                                    <option value="smartphones">Smartphones</option>
-                                    <option value="laptops">Laptops</option>
-                                </>
-                            )}
-                            {category === 'fashion' && (
-                                <>
-                                    <option value="clothing">Clothing</option>
-                                    <option value="accessories">Accessories</option>
-                                </>
-                            )}
-                            {category === 'home' && (
-                                <>
-                                    <option value="kitchen">Kitchen</option>
-                                    <option value="furniture">Furniture</option>
-                                </>
-                            )} */}
                         </select>
                     </div>
 

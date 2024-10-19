@@ -27,10 +27,10 @@ const Card = ({ data }) => {
     return (
         <div className=" h-full ">
 
-            <div className=" mt-20 mx-4  h-[350px] max-w-[300px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
+            <div className=" mt-20 mx-4  h-[350px] min-w-[300px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
                 <img
-                    className=" w-full pb-7"
-                    src="https://www.finder.com/niche-builder/6495af0aafcca.png"
+                    className=" w-[300px] pb-7 h-[200px]"
+                    src={image}
                     alt=""
                 />
                 <div className="px-7">
@@ -41,7 +41,7 @@ const Card = ({ data }) => {
                     <p className="text-gray-400">In Stock: {quantity}</p>
                 </div>
                 <div className="text-gray-400 bg-[#232d3e] font-semibold grid grid-cols-2 absolute left-0 right-0 bottom-0 rounded-b-lg ">
-                    
+
                     <button onClick={() => handelAddToCart(data)} className=" flex items-center justify-center hover:text-white  hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] border-r border-gray-600 ">
                         <FaShoppingCart className="text-center mr-1 text-2xl" />
 

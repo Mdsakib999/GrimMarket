@@ -149,7 +149,7 @@ const Checkout = () => {
       </div>
 
       {/* Total Amount and Checkout Button */}
-      <div className="mt-6 flex gap-4 items-center justify-center me-7">
+      <div className="mt-8 flex gap-4 items-center justify-center me-7">
         <h3 className="text-xl font-semibold mb-2 text-gray-200">Total Amount : $ {totalAmount}</h3>
         <button
           onClick={handleCheckout}

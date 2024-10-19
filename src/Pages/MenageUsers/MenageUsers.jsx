@@ -11,7 +11,7 @@ const MenageUsers = () => {
     }
 
     return (
-        <div>
+        <div className="overflow-x-auto">
             <h1 className="text-center" >Menage Users</h1>
             <table className="min-w-full bg-white border rounded-md text-black mt-8 px-4">
                 <thead>
