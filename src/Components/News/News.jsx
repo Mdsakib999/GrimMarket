@@ -1,6 +1,9 @@
-import React from "react";
+import moment from "moment";
+import { useGetPostQuery } from "../../Redux/Features/Post/postApi";
 
 const News = () => {
+  const { data } = useGetPostQuery(undefined, { refetchOnMountOrArgChange: true })
+  console.log(data);
   return (
     <div className="h-screen text-white bg-[#11131f] overflow-y-auto">
       <div className="w-full fixed top-[65px] bg-[#181c30] bg-opacity-95">
@@ -16,7 +19,25 @@ const News = () => {
       </div>
 
       <div className="mt-[100px] p-5 space-y-6 text-gray-200">
-        <p className="text-base md:text-lg">
+        {
+          data?.data.map((item, index) => <div key={index}>
+            <div
+              className="  py-4 "
+              dangerouslySetInnerHTML={{ __html: item.postData }}
+            />
+            <div className="flex justify-between items-center border-b pb-2">
+              <p> Crested: Admin</p>
+              <p>
+                {moment(item?.createdAt).isAfter(moment())
+                  ? `${moment(item?.createdAt).fromNow(true)} left`
+                  : `${moment(item?.createdAt).fromNow(true)} ago`}
+              </p>
+
+            </div>
+          </div>)
+        }
+
+        {/* <p className="text-base md:text-lg">
           <span className="text-[#36fc46]">Bitcoin:</span> Bitcoin's price crosses the $30,000 mark, marking a significant milestone for crypto enthusiasts. Experts predict continued volatility.
         </p>
         <p className="text-base md:text-lg">
@@ -36,7 +57,7 @@ const News = () => {
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-600">
             LinkedIn
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
