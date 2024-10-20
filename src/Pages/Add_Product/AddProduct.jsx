@@ -81,21 +81,21 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gray-50 text-black">
+        <div className="min-h-screen flex justify-center items-center bg-black text-black">
             <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-center mb-6">Add New Product</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
 
                     {/* Title */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Product Title</label>
+                        <label className="block text-sm font-medium text-gray-700">Product Name</label>
                         <input
                             type="text"
                             name="title"
                             value={formData.title}
                             onChange={handleChange}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
-                            placeholder="Enter product title"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
+                            placeholder="Enter Product Name"
                             required
                         />
                     </div>
@@ -107,7 +107,7 @@ const AddProduct = () => {
                             type="file"
                             name="image"
                             onChange={handleChange}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
                             required
                         />
                     </div>
@@ -120,7 +120,7 @@ const AddProduct = () => {
                             name="price"
                             value={formData.price}
                             onChange={handleChange}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
                             placeholder="Enter price"
                             required
                         />
@@ -134,7 +134,7 @@ const AddProduct = () => {
                             name="quantity"
                             value={formData.quantity}
                             onChange={handleChange}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
                             placeholder="Enter quantity"
                             required
                         />
@@ -150,7 +150,7 @@ const AddProduct = () => {
                                 handleChange(e);
                                 setCategory(e.target.value);
                             }}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
                             required
                         >
                             <option value="">Select Category</option>
@@ -167,7 +167,7 @@ const AddProduct = () => {
                             name="subCategoryName"
                             value={formData.subCategoryName}
                             onChange={handleChange}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
                             required
                         >
                             <option value="">Select Subcategory</option>
@@ -182,7 +182,7 @@ const AddProduct = () => {
                         <button
                             disabled={loading}
                             type="submit"
-                            className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition flex items-center justify-center"
+                            className="w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition flex items-center justify-center"
                         >
                             {loading ? (
                                 <FaSpinner className="animate-spin mr-2" /> // Spinner when loading
