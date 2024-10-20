@@ -121,12 +121,12 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                   {/* Checkout Button Fixed at Bottom */}
                   <div className="mt-4">
                     <hr />
-                    <div className="mb-2 flex justify-between">
-                      <p className="text-xl">Subtotal:</p>
-                      <p>{totalPrice}</p>
+                    <div className="mb-3 mt-1 flex justify-between">
+                      <p className="text-lg">Total :</p>
+                      <p className="pe-3">$ {totalPrice}</p>
                     </div>
                     <Link to="/checkout">
-                      <button className="w-full bg-blue-600 text-white text-base px-4 py-2 rounded-md hover:bg-blue-700">
+                      <button className="w-full bg-green-500 text-white text-base px-4 py-2 rounded-md hover:bg-green-700 lg:font-semibold">
                         Checkout
                       </button>
                     </Link>
@@ -239,11 +239,11 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                   <div className="mt-4">
                     <hr />
                     <div className="mb-2 flex justify-between">
-                      <p className="text-xl">Subtotal:</p>
-                      <p>{totalPrice}</p>
+                      <p className="text-lg">Subtotal:</p>
+                      <p>$ {totalPrice}</p>
                     </div>
                     <Link to="/checkout">
-                      <button className="w-full bg-blue-600 text-white text-base px-4 py-2 rounded-md hover:bg-blue-700">
+                      <button className="w-full bg-green-500 text-white text-base px-4 py-2 rounded-md hover:bg-green-600">
                         Checkout
                       </button>
                     </Link>
