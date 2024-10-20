@@ -42,7 +42,7 @@ const Settings = () => {
                     <div>
                         <p className="text-xl inline-block font-bold">{userName}</p>
                         <span className="ms-4 bg-[#1A3D28] text-sm px-3 rounded-full">{role === 'customer' ? 'user' : role === 'admin' ? 'admin' : ''}</span>
-                        <p className="mt-4">0 / 0.00$ Payments</p>
+                        <p className="mt-4">0 / 0.00 € Payments</p>
                     </div>
                 </div>
             </div>

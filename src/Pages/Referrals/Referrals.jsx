@@ -47,7 +47,7 @@ const Referrals = () => {
                             </div>
                             <div className="bg-[#16191E] text-center p-8 rounded-md">
                                 <FaMoneyBillAlt className="text-7xl mx-auto text-[#206034]" />
-                                <p className="py-2 text-lg font-semibold text-[#29A649]">$0.00</p>
+                                <p className="py-2 text-lg font-semibold text-[#29A649]">€ 0.00</p>
                                 <p>Earned total from referrals</p>
                             </div>
                         </div>
@@ -73,8 +73,8 @@ const Referrals = () => {
                                     :
                                     data?.data?.ref?.map(item => <tr key={item.id} className="border-b border-gray-700 hover:bg-gray-700 transition-all">
                                         <td className="px-6 py-4">{item.userName}</td>
-                                        <td className="px-6 py-4">Completed task</td>
-                                        <td className="px-6 py-4">${item.dollar}</td>
+                                        <td className="px-6 py-4">Completed Refer</td>
+                                        <td className="px-6 py-4">€{item.dollar}</td>
                                     </tr>)
                             }
                         </tbody>

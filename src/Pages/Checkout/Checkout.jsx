@@ -29,7 +29,7 @@ const Checkout = () => {
       cartArray
     );
     console.log("Total Amount:", totalAmount);
-    alert(`Proceeding to payment. Total Amount: $${totalAmount}`);
+    alert(`Proceeding to payment. Total Amount: € ${totalAmount}`);
   };
 
   const itemsToDisplay = cartArray.length > 0 ? cartArray : buyNowData;
@@ -59,7 +59,7 @@ const Checkout = () => {
                 className="border-b border-gray-200 text-center"
               >
                 <td className="sm:px-4 py-3 ">{item?.title}</td>
-                <td className="sm:px-4 py-3">$ {item?.price}</td>
+                <td className="sm:px-4 py-3">€ {item?.price}</td>
                 <td className="sm:px-4 py-3  flex justify-evenly items-center">
                   {" "}
                   <span>
@@ -126,7 +126,7 @@ const Checkout = () => {
                     </button>
                   </span>
                 </td>
-                <td className="sm:px-4 py-3">$ {item?.totalPrice}</td>
+                <td className="sm:px-4 py-3">€ {item?.totalPrice}</td>
 
                 <td className="sm:px-4 px-1 py-3 space-x-3 ">
                   <button
@@ -150,7 +150,7 @@ const Checkout = () => {
 
       {/* Total Amount and Checkout Button */}
       <div className="mt-8 flex flex-col gap-4 items-center justify-center me-7">
-        <h3 className="text-2xl font-semibold mb-2 text-gray-200">Total Amount : $ {totalAmount}</h3>
+        <h3 className="text-2xl font-semibold mb-2 text-gray-200">Total Amount : {totalAmount} €</h3>
         <button
           onClick={handleCheckout}
           disabled={itemsToDisplay.length < 1}
@@ -159,7 +159,7 @@ const Checkout = () => {
             : "hover:shadow-xl"
             }`}
         >
-          Pay Now ${totalAmount.toFixed(2)}
+          Pay Now € {totalAmount.toFixed(2)}
         </button>
       </div>
     </div>
