@@ -78,7 +78,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           {
             roleAbility && <button className="hover:text-[#36fc46]"><Link to={'/order'}>Orders</Link></button>
           }
-          <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
+          <span className="text-[#36fc46]">€ 0.00</span> {/* Money */}
           {
             roleAbility && <div className="relative">
               <button
@@ -123,7 +123,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     <hr />
                     <div className="mb-3 mt-1 flex justify-between">
                       <p className="text-lg">Total :</p>
-                      <p className="pe-3">$ {totalPrice}</p>
+                      <p className="pe-3">€ {totalPrice}</p>
                     </div>
                     <Link to="/checkout">
                       <button className="w-full bg-green-500 text-white text-base px-4 py-2 rounded-md hover:bg-green-700 lg:font-semibold">
@@ -160,9 +160,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     <p className="font-bold">{userName}</p>
                     <p className="text-sm text-green-400">
                       {role === "customer"
-                        ? "user"
+                        ? "User"
                         : role === "admin"
-                          ? "admin"
+                          ? "Admin"
                           : ""}
                     </p>
                   </div>
@@ -171,15 +171,15 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 <hr className="my-2 border-gray-600" />
                 <ul className="space-y-2">
                   <li className="hover:text-green-400 cursor-pointer">
-                    <Link to={"/user/settings"}>My settings</Link>
+                    <Link to={"/user/settings"}>My Settings</Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
                     <Link to={'/user/referrals'}>
-                      My referrals
+                      My Referrals
                     </Link>
                   </li>
                   <li className="hover:text-green-400 cursor-pointer">
-                    <Link to={'/order'}>My orders</Link>
+                    <Link to={'/order'}>My Orders</Link>
                   </li>
                   <li
                     onClick={() => dispatch(logOut())}
@@ -195,7 +195,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
 
         {/* Mobile Menu */}
         <div className="md:hidden flex space-x-5 items-center " >
-          <span className="hover:text-[#36fc46]">$0.00</span> {/* Money */}
+          <span className="hover:text-[#36fc46]">€ 0.00</span> {/* Money */}
           <button onClick={() => setIsAddToCartOpen1(!isAddToCartOpen1)} className="hover:text-[#36fc46] relative">
             <BsCart className="text-3xl" />
             <span className=" absolute -top-2 left- bg-slate-700  text-[#36fc46] rounded-full py-[3px] px-[7px] text-center  text-xs">{cartArray.length}</span>
@@ -240,7 +240,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                     <hr />
                     <div className="mb-2 flex justify-between">
                       <p className="text-lg">Subtotal:</p>
-                      <p>$ {totalPrice}</p>
+                      <p>€ {totalPrice}</p>
                     </div>
                     <Link to="/checkout">
                       <button className="w-full bg-green-500 text-white text-base px-4 py-2 rounded-md hover:bg-green-600">

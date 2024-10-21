@@ -12,7 +12,7 @@ const MenageUsers = () => {
 
     return (
         <div className="overflow-x-auto">
-            <h1 className="text-center" >Menage Users</h1>
+            <h1 className="text-center" >All Users</h1>
             <table className="min-w-full bg-white border rounded-md text-black mt-8 px-4">
                 <thead>
                     <tr>
@@ -23,7 +23,7 @@ const MenageUsers = () => {
                         <th className="py-2 px-4 border">Action</th>
                     </tr>
                 </thead>
-                <tbody className="text-black">
+                <tbody className="text-black text-center">
                     {data?.data?.map((product, index) => (
                         <tr key={product._id}>
 

@@ -76,11 +76,12 @@ const ManageProduct = () => {
 
     return (
         <div className="container mx-auto overflow-x-auto px-4 ">
-            <h1 className="text-2xl font-bold mb-4 text-white">Manage Products</h1>
+            <h1 className="text-2xl font-bold my-4 text-white">Manage Products</h1>
 
             {/* Filter Form */}
 
-            <h2 className="text-xl font-semibold text-white mb-4 text-center">Filter Products</h2>
+           <div className="">
+           <h2 className="text-xl font-semibold text-[#36fc46] mb-4 text-center">Filter Products</h2>
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-white mb-1">Category</label>
@@ -161,6 +162,7 @@ const ManageProduct = () => {
                     />
                 </div>
             </div>
+           </div>
 
 
             {/* Products Table */}
@@ -175,13 +177,13 @@ const ManageProduct = () => {
                         <th className="py-2 px-4 border">Action</th>
                     </tr>
                 </thead>
-                <tbody className="text-black">
+                <tbody className="text-black text-center">
                     {data?.data?.map((product) => (
                         <tr key={product._id}>
                             <td className="py-2 px-4 border">{product.title}</td>
                             <td className="py-2 px-4 border">{product.categoryName}</td>
                             <td className="py-2 px-4 border">{product.subCategoryName}</td>
-                            <td className="py-2 px-4 border">${product.price}</td>
+                            <td className="py-2 px-4 border">{product.price} €</td>
                             <td className="py-2 px-4 border">{product.quantity}</td>
                             <td className="py-2 px-4 border mx-auto">
                                 <span
@@ -237,13 +239,13 @@ const ManageProduct = () => {
 
                                             {/* Title */}
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700">Product Title</label>
+                                                <label className="block text-sm font-medium text-gray-700">Product Name</label>
                                                 <input
                                                     type="text"
                                                     name="title"
                                                     defaultValue={modalData.title}
                                                     className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
-                                                    placeholder="Enter product title"
+                                                    placeholder="Enter product name"
 
                                                 />
                                             </div>
