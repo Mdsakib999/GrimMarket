@@ -4,9 +4,12 @@ const MenageUsers = () => {
     const { data, refetch } = useGetAllUsersQuery()
     const [deleteUser] = useDeleteAUserMutation()
     const handelDelete = async (id) => {
-        const res = await deleteUser(id)
-        if (res) {
-            refetch()
+        var proceed = confirm("Do you want to delete User?");
+        if (proceed) {
+            const res = await deleteUser(id)
+            if (res) {
+                refetch()
+            }
         }
     }
 
@@ -33,7 +36,7 @@ const MenageUsers = () => {
                             <td className="py-2 px-4 border">{product.role}</td>
                             <td className="py-2 px-4 border mx-auto">
                                 <button
-                                    disabled={product.role === 'admin'}
+                                    disabled={product.role === 'admin' || ''}
                                     onClick={() => handelDelete(product._id)}
                                     className="cursor-pointer text-red-500 hover:text-red-700 px-2 py-1 rounded-md transition-colors duration-300 ml-4"
                                 >

@@ -24,6 +24,8 @@ import MenageUsers from "../Pages/MenageUsers/MenageUsers";
 import Order from "../Pages/Order/Order";
 import Checkout from "../Pages/Checkout/Checkout";
 import Home from "../Pages/Home/Home";
+import CreatePost from "../Pages/CreatePost/CreatePost";
+import MenagePost from "../Pages/Menage-Post/MenagePost";
 
 
 export const router = createBrowserRouter([
@@ -106,6 +108,14 @@ export const router = createBrowserRouter([
             {
                 path: '/admin/menage-users',
                 element: <AdminRoutes><MenageUsers /></AdminRoutes>
+            },
+            {
+                path: '/admin/create-post',
+                element: <AdminRoutes><CreatePost /></AdminRoutes>
+            },
+            {
+                path: '/admin/menage-post',
+                element: <AdminRoutes><MenagePost /></AdminRoutes>
             }
 
         ]
