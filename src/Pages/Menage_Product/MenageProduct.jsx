@@ -5,6 +5,8 @@ import { cloudinaryUpload } from "../../utils/getImageLink";
 import toast from "react-hot-toast";
 import Loading from './../../Components/Loading/Loading';
 import { useGetAllCategoryQuery } from "../../Redux/Features/Category/categoryApi";
+import { RxCross2 } from "react-icons/rx";
+
 
 const ManageProduct = () => {
     const [editData] = useEditProductMutation()
@@ -71,7 +73,7 @@ const ManageProduct = () => {
         setIsImageChange(false)
         setId('')
     }
-
+    console.log(categoriesArray);
     const categoryOptions = categoriesArray?.data?.map(item => (
         {
             value: item?.category,
@@ -113,7 +115,7 @@ const ManageProduct = () => {
                         >
                             <option value="">Select category</option>
                             {
-                                categoryOptions.map((item, index) => <option className="text-black" key={index} value={item.value}>{item.value}</option>)
+                                categoryOptions?.map((item, index) => <option className="text-black" key={index} value={item.value}>{item.value}</option>)
                             }
 
                         </select>
@@ -185,26 +187,26 @@ const ManageProduct = () => {
 
 
             {/* Products Table */}
-            <table className="min-w-full overflow-x-auto bg-white border rounded-md text-black mt-8 ">
+            <table className="min-w-full overflow-x-auto text-white border border-gray-500 rounded-md bg-black mt-8 ">
                 <thead>
                     <tr>
-                        <th className="py-2 px-4 border">Title</th>
-                        <th className="py-2 px-4 border">Category</th>
-                        <th className="py-2 px-4 border">Subcategory</th>
-                        <th className="py-2 px-4 border">Price</th>
-                        <th className="py-2 px-4 border">Quantity</th>
-                        <th className="py-2 px-4 border">Action</th>
+                        <th className="py-2 px-4 border border-gray-500">Title</th>
+                        <th className="py-2 px-4 border border-gray-500">Category</th>
+                        <th className="py-2 px-4 border border-gray-500">Subcategory</th>
+                        <th className="py-2 px-4 border border-gray-500">Price</th>
+                        <th className="py-2 px-4 border border-gray-500">Quantity</th>
+                        <th className="py-2 px-4 border border-gray-500">Action</th>
                     </tr>
                 </thead>
-                <tbody className="text-black text-center">
+                <tbody className="text-white text-center">
                     {data?.data?.map((product) => (
                         <tr key={product._id}>
-                            <td className="py-2 px-4 border">{product.title}</td>
-                            <td className="py-2 px-4 border">{product.categoryName}</td>
-                            <td className="py-2 px-4 border">{product.subCategoryName}</td>
-                            <td className="py-2 px-4 border">{product.price} €</td>
-                            <td className="py-2 px-4 border">{product.quantity}</td>
-                            <td className="py-2 px-4 border mx-auto">
+                            <td className="py-2 px-4 border border-gray-500">{product.title}</td>
+                            <td className="py-2 px-4 border border-gray-500">{product.categoryName}</td>
+                            <td className="py-2 px-4 border border-gray-500">{product.subCategoryName}</td>
+                            <td className="py-2 px-4 border border-gray-500">{product.price} €</td>
+                            <td className="py-2 px-4 border border-gray-500">{product.quantity}</td>
+                            <td className="py-2 px-4 border border-gray-500 mx-auto">
                                 <span
                                     onClick={() => {
                                         setShowModal(true)
@@ -212,14 +214,14 @@ const ManageProduct = () => {
                                         setImageLink(product.image)
                                         setId(product._id)
                                     }}
-                                    className="cursor-pointer text-blue-500 hover:text-blue-700 px-2 py-1 rounded-md transition-colors duration-300"
+                                    className="cursor-pointer text-green-500 hover:text-green-600 px-2 py-1 rounded-md transition-colors duration-300"
                                 >
                                     Edit
                                 </span>
                                 <span
 
                                     onClick={() => handelDelete(product._id)}
-                                    className="cursor-pointer text-red-500 hover:text-red-700 px-2 py-1 rounded-md transition-colors duration-300 ml-4"
+                                    className="cursor-pointer text-red-500 hover:text-red-600 px-2 py-1 rounded-md transition-colors duration-300 ml-4"
                                 >
                                     Delete
                                 </span>
@@ -235,11 +237,11 @@ const ManageProduct = () => {
                         <div
                             className="justify-center  text-black items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                         >
-                            <div className="relative md:w-[50%] my-6 mx-auto max-w-3xl">
+                            <div className="relative w-[80%] md:w-[50%] my-6 mx-auto max-w-3xl">
                                 {/*content*/}
                                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                     {/*header*/}
-                                    <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                                    <div className="flex items-center justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                                         <h3 className="text-3xl font-semibold">
                                             Product Edit
                                         </h3>
@@ -247,8 +249,8 @@ const ManageProduct = () => {
                                             className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                             onClick={closeModal}
                                         >
-                                            <span className="bg-transparent text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
-                                                ×
+                                            <span className="bg-transparent text-black  h-6 w-6 text-3xl lg:text-4xl block hover:text-red-500 outline-none focus:outline-none">
+                                                <RxCross2 />
                                             </span>
                                         </button>
                                     </div>
@@ -263,7 +265,7 @@ const ManageProduct = () => {
                                                     type="text"
                                                     name="title"
                                                     defaultValue={modalData.title}
-                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 outline-none"
                                                     placeholder="Enter product name"
 
                                                 />
@@ -279,7 +281,7 @@ const ManageProduct = () => {
                                                     type="number"
                                                     name="price"
                                                     defaultValue={modalData.price}
-                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 outline-none"
                                                     placeholder="Enter price"
 
                                                 />
@@ -292,7 +294,7 @@ const ManageProduct = () => {
                                                     type="number"
                                                     name="quantity"
                                                     defaultValue={modalData.quantity}
-                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 outline-none"
                                                     placeholder="Enter quantity"
 
                                                 />
@@ -305,7 +307,7 @@ const ManageProduct = () => {
                                                             <input
                                                                 type="file"
                                                                 name="image"
-                                                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400"
+                                                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-500 outline-none"
 
                                                             />
 
@@ -327,7 +329,7 @@ const ManageProduct = () => {
                                                 <button
                                                     disabled={loading}
                                                     type="submit"
-                                                    className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition flex items-center justify-center"
+                                                    className="w-[70%] lg:w-[50%] mx-auto py-2 px-4 bg-green-500 text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition flex items-center justify-center"
                                                 >
                                                     {loading ? (
                                                         <FaSpinner className="animate-spin mr-2" /> // Spinner when loading
