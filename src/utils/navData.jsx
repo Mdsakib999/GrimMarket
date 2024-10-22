@@ -170,5 +170,15 @@ export const adminNavData = [
         id: "3",
         title: 'Menage Users',
         link: '/admin/menage-users',
+    },
+    {
+        id: "3",
+        title: 'Create Post',
+        link: '/admin/create-post',
+    },
+    {
+        id: "4",
+        title: 'Menage Post',
+        link: '/admin/menage-post',
     }
 ]
