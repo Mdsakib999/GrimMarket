@@ -3,6 +3,7 @@ import JoditEditor from 'jodit-react';
 import { FaSpinner } from 'react-icons/fa';
 import { useCreatePostMutation } from '../../Redux/Features/Post/postApi';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 const CreatePost = () => {
     const editor = useRef(null);
     const [content, setContent] = useState('');
@@ -26,6 +27,9 @@ const CreatePost = () => {
 
     return (
         <div>
+            <div className='flex justify-end me-16 pt-4'>
+                <Link to={'/admin/menage-news'} className='bg-blue-500 py-2 px-4 text-white font-semibold rounded-md shadow-md  hover:bg-blue-600'> Menage News</Link>
+            </div>
             <p className='text-2xl font-bold py-4 text-center' >Create Post</p>
             <div className='md:w-[80%] mx-auto text-black'>
                 <JoditEditor
