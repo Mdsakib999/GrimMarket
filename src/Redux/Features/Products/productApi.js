@@ -15,6 +15,12 @@ const productManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getProductById: builder.query({
+      query: (id) => ({
+        url: `/product/getProductById/${id}`,
+        method: "GET",
+      }),
+    }),
     createProduct: builder.mutation({
       query: (payload) => ({
         url: "/product/create-product",
@@ -57,4 +63,5 @@ export const {
   useGetAllProductsQuery,
   useEditProductMutation,
   useDeleteProductMutation,
+  useGetProductByIdQuery,
 } = productManagementApi;

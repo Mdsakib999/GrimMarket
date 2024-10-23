@@ -21,6 +21,7 @@ import SubCategoryPage from "../Pages/CategoryPage/SubCategoryPage";
 import AddFunds from './../Pages/Navbar/Profile/AddFunds';
 import MenageCategory from "../Pages/MenageCategory/MenageCategory";
 import MenageSubCategory from "../Pages/MenageSubCategory/MenageSubCategory";
+import CardDetails from "../Components/Card/CardDetails";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
                 path: '/:category/:subCategory',
                 element: <SubCategoryPage />
             },
+            {
+                path: '/details/:id',
+                element: <CardDetails />
+            },
+
             {
                 path: "/support",
                 element: <Support />
