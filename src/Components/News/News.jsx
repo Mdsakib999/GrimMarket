@@ -25,8 +25,8 @@ const News = () => {
               className="  py-4 "
               dangerouslySetInnerHTML={{ __html: item.postData }}
             />
-            <div className="flex justify-between items-center border-b pb-2">
-              <p> Crested: Admin</p>
+            <div className="flex justify-between items-center border-b border-gray-400 pb-2 text-gray-400 text-sm">
+              <p> Created: Admin</p>
               <p>
                 {moment(item?.createdAt).isAfter(moment())
                   ? `${moment(item?.createdAt).fromNow(true)} left`

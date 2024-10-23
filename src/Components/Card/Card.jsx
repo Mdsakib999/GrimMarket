@@ -27,9 +27,9 @@ const Card = ({ data }) => {
     return (
         <div className=" h-full ">
 
-            <Link to={`/details/${_id}`} className="border inline-block border-red-500 mt-20 mx-4  h-[210px] w-[200px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
+            <Link to={`/details/${_id}`} className="border inline-block border-red-500 mt-10 mx-4  h-[235px] w-[200px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B] ">
                 <img
-                    className=" w-full h-[90px]"
+                    className=" w-full h-[110px]"
                     src={image}
                     alt="card img"
                 />
