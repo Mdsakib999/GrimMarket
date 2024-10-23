@@ -6,6 +6,7 @@ import {
     useUpdateCategoryMutation, // Add the update mutation
 } from "../../Redux/Features/Category/categoryApi";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ManageCategory = () => {
     const [createCategory] = useCreateCategoryMutation();
@@ -105,6 +106,9 @@ const ManageCategory = () => {
 
             {/* Categories Table */}
             <div className="mt-10">
+                <div className='flex justify-end me-16 pt-4'>
+                    <Link to={'/admin/menage-subcategory'} className='bg-blue-500 py-2 px-4 text-white font-semibold rounded-md shadow-md  hover:bg-blue-600'> Menage Sub Category</Link>
+                </div>
                 <h3 className="text-2xl text-white text-center font-semibold mb-4">Category List</h3>
                 <table className="min-w-full bg-white text-black">
                     <thead>

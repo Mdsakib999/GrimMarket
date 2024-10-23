@@ -11,6 +11,7 @@ const Checkout = () => {
   const cartArray = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const location = useLocation();
+  console.log(location);
 
   // Initialize the buyNowData state using useState
   const [buyNowData, setBuyNowData] = useState(
