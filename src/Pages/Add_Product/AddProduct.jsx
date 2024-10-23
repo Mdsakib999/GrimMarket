@@ -4,9 +4,11 @@ import { cloudinaryUpload } from '../../utils/getImageLink';
 import { useCreateProductMutation } from '../../Redux/Features/Products/productApi';
 import toast from 'react-hot-toast';
 import { FaSpinner } from 'react-icons/fa';
+import { useGetAllCategoryQuery } from '../../Redux/Features/Category/categoryApi';
 
 const AddProduct = () => {
     const [createProduct] = useCreateProductMutation();
+    const { data: categoriesArray = [], isLoading } = useGetAllCategoryQuery()
     const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState('');
 
@@ -21,14 +23,20 @@ const AddProduct = () => {
     };
 
     const [formData, setFormData] = useState(initialFormData);
-
-    const categoryOptions = categoriesArray.map(item => (
+    console.log(categoriesArray.data);
+    const categoryOptions = categoriesArray?.data?.map(item => (
         {
-            value: item.title,
-            option: item.title
+            value: item?.category,
+            option: item?.category
         }
     ));
-    const subCategoryOptions = subcategories.filter(item => item.categoryName === category);
+    const subCategory = categoriesArray?.data?.filter(item => item.category === category)[0]
+    const subCategoryOptions = subCategory?.subCategory?.map(item => {
+        return {
+            value: item,
+            option: item
+        }
+    })
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -155,7 +163,7 @@ const AddProduct = () => {
                         >
                             <option value="">Select Category</option>
                             {
-                                categoryOptions.map((item, index) => <option key={index} value={item.value}>{item.option}</option>)
+                                categoryOptions?.map((item, index) => <option key={index} value={item.value}>{item.option}</option>)
                             }
                         </select>
                     </div>
@@ -172,7 +180,7 @@ const AddProduct = () => {
                         >
                             <option value="">Select Subcategory</option>
                             {
-                                subCategoryOptions?.map((item, index) => <option key={index} value={item.subCategory}>{item.subCategory}</option>)
+                                subCategoryOptions?.map((item, index) => <option className='text-black' key={index} value={item.value}>{item.option}</option>)
                             }
                         </select>
                     </div>

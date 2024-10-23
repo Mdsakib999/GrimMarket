@@ -1,11 +1,16 @@
 import { useLocation } from "react-router-dom";
 import { useGetProductsQuery } from "../../Redux/Features/Products/productApi";
-import Card from "../../Components/Card/Card";
 import { capitalizeBusinessWise } from "../../utils/capitalizeBusinessWise";
 import Loading from "../../Components/Loading/Loading";
-const Accounts = () => {
-    const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: 'Accounts' }])
+import Card from "../../Components/Card/Card";
+
+
+const CategoryPage = () => {
     const location = useLocation()
+    // const categoryPath = location.pathname.split("/").join('')
+    const categoryPath = capitalizeBusinessWise(location.pathname.split("/").join(''))
+    console.log(categoryPath);
+    const { data, isLoading } = useGetProductsQuery([{ name: 'categoryName', value: categoryPath }])
     const path = capitalizeBusinessWise(location.pathname.split('/').join(''))
     if (isLoading) {
         return <Loading />
@@ -28,4 +33,4 @@ const Accounts = () => {
     );
 };
 
-export default Accounts;
+export default CategoryPage;

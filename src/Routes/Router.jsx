@@ -2,18 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import ProductsUpdates from './../Components/News/ProductsUpdates';
-import Accounts from "../Pages/Accounts/Accounts";
-import DynamicAccounts from "../Pages/Accounts/DynamicAccounts";
 import Support from "../Pages/Support/Support";
 import Faq from "../Pages/Faq/Faq";
-import CryptoExchanger from "../Pages/CryptoExchanger/CryptoExchanger";
-import DynamicCryptoExchanger from "../Pages/CryptoExchanger/DynamicCryptoExchanger";
-import EWallets from "../Pages/E-Wallets/EWallets";
-import DynamicEWallets from "../Pages/E-Wallets/DynamicEWallets";
-import Remittance from "../Pages/Remittance/Remittance";
-import DynamicRemittance from "../Pages/Remittance/DynamicRemittance";
-import AddFunds from "../Pages/Navbar/Profile/AddFunds";
 import PrivetRoutes from './PrivetRoutes';
 import Settings from "../Pages/Settings/Settings";
 import Referrals from "../Pages/Referrals/Referrals";
@@ -26,6 +16,12 @@ import Checkout from "../Pages/Checkout/Checkout";
 import Home from "../Pages/Home/Home";
 import CreatePost from "../Pages/CreatePost/CreatePost";
 import MenagePost from "../Pages/Menage-Post/MenagePost";
+import CategoryPage from "../Pages/CategoryPage/CategoryPage";
+import SubCategoryPage from "../Pages/CategoryPage/SubCategoryPage";
+import AddFunds from './../Pages/Navbar/Profile/AddFunds';
+import MenageCategory from "../Pages/MenageCategory/MenageCategory";
+import MenageSubCategory from "../Pages/MenageSubCategory/MenageSubCategory";
+import CardDetails from "../Components/Card/CardDetails";
 
 
 export const router = createBrowserRouter([
@@ -38,37 +34,18 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: "/accounts",
-                element: <Accounts />
+                path: '/:category',
+                element: <CategoryPage />
             },
             {
-                path: "/accounts/:dynamic",
-                element: <DynamicAccounts />
+                path: '/:category/:subCategory',
+                element: <SubCategoryPage />
             },
             {
-                path: '/crypto-exchanger',
-                element: <CryptoExchanger />
+                path: '/details/:id',
+                element: <CardDetails />
             },
-            {
-                path: "/crypto-exchanger/:dynamic",
-                element: <DynamicCryptoExchanger />
-            },
-            {
-                path: '/e-wallets',
-                element: <EWallets />
-            },
-            {
-                path: "/e-wallets/:dynamic",
-                element: <DynamicEWallets />
-            },
-            {
-                path: '/remittance',
-                element: <Remittance />
-            },
-            {
-                path: "/remittance/:dynamic",
-                element: <DynamicRemittance />
-            },
+
             {
                 path: "/support",
                 element: <Support />
@@ -110,12 +87,20 @@ export const router = createBrowserRouter([
                 element: <AdminRoutes><MenageUsers /></AdminRoutes>
             },
             {
-                path: '/admin/create-post',
+                path: '/admin/create-news',
                 element: <AdminRoutes><CreatePost /></AdminRoutes>
             },
             {
-                path: '/admin/menage-post',
+                path: '/admin/menage-news',
                 element: <AdminRoutes><MenagePost /></AdminRoutes>
+            },
+            {
+                path: '/admin/menage-category',
+                element: <AdminRoutes><MenageCategory /></AdminRoutes>
+            },
+            {
+                path: '/admin/menage-subcategory',
+                element: <AdminRoutes><MenageSubCategory /></AdminRoutes>
             }
 
         ]

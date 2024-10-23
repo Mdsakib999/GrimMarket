@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useDeleteProductMutation, useEditProductMutation, useGetAllProductsQuery } from "../../Redux/Features/Products/productApi";
-import { categoriesArray, subcategories } from "../../utils/categoryItem";
 import { FaSpinner } from "react-icons/fa";
 import { cloudinaryUpload } from "../../utils/getImageLink";
 import toast from "react-hot-toast";
 import Loading from './../../Components/Loading/Loading';
+import { useGetAllCategoryQuery } from "../../Redux/Features/Category/categoryApi";
 import { RxCross2 } from "react-icons/rx";
 
 
 const ManageProduct = () => {
     const [editData] = useEditProductMutation()
+    const { data: categoriesArray = [] } = useGetAllCategoryQuery()
     const [deleteProduct] = useDeleteProductMutation()
     const [query, setQuery] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -19,6 +20,7 @@ const ManageProduct = () => {
     const [loading, setLoading] = useState(false)
     const { data, isLoading, error, refetch } = useGetAllProductsQuery(query);
     const [id, setId] = useState('')
+    const [category, setCategory] = useState('')
 
     const handelEdit = async (e) => {
         e.preventDefault()
@@ -71,6 +73,20 @@ const ManageProduct = () => {
         setIsImageChange(false)
         setId('')
     }
+    console.log(categoriesArray);
+    const categoryOptions = categoriesArray?.data?.map(item => (
+        {
+            value: item?.category,
+            option: item?.category
+        }
+    ));
+    const subCategory = categoriesArray?.data?.filter(item => item.category === category)[0]
+    const subCategoryOptions = subCategory?.subCategory?.map(item => {
+        return {
+            value: item,
+            option: item
+        }
+    })
 
 
     if (isLoading) return <Loading />;
@@ -82,89 +98,92 @@ const ManageProduct = () => {
 
             {/* Filter Form */}
 
-           <div className="">
-           <h2 className="text-xl font-semibold text-[#36fc46] mb-4 text-center">Filter Products</h2>
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                    <label className="block text-sm font-medium text-white mb-1">Category</label>
-                    <select
-                        name="sortBy"
-                        value={query.sortBy}
-                        // onChange={handleChange}
-                        onChange={(e) => setQuery([{ name: 'categoryName', value: e.target.value }])}
-                        className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Select category</option>
-                        {
-                            categoriesArray.map((item, index) => <option className="text-black" key={index} value={item.title}>{item.title}</option>)
-                        }
+            <div className="">
+                <h2 className="text-xl font-semibold text-[#36fc46] mb-4 text-center">Filter Products</h2>
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium text-white mb-1">Category</label>
+                        <select
+                            name="sortBy"
+                            value={query.sortBy}
+                            // onChange={handleChange}
+                            onChange={(e) => {
+                                setQuery([{ name: 'categoryName', value: e.target.value }])
+                                setCategory(e.target.value)
+                            }}
+                            className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option value="">Select category</option>
+                            {
+                                categoryOptions?.map((item, index) => <option className="text-black" key={index} value={item.value}>{item.value}</option>)
+                            }
 
-                    </select>
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-white mb-1">Sub Category</label>
-                    <select
-                        name="sortBy"
-                        value={query.sortBy}
-                        // onChange={handleChange}
-                        onChange={(e) => setQuery([{ name: 'subCategoryName', value: e.target.value }])}
-                        className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Select Sub category</option>
-                        {
-                            subcategories.map((item, index) => <option key={index} value={item.subCategory}>{item.subCategory}</option>)
-                        }
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-white mb-1">Sub Category</label>
+                        <select
+                            name="sortBy"
+                            value={query.sortBy}
+                            // onChange={handleChange}
+                            onChange={(e) => setQuery([{ name: 'subCategoryName', value: e.target.value }])}
+                            className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option value="">Select Sub category</option>
+                            {
+                                subCategoryOptions?.map((item, index) => <option key={index} value={item.value}>{item.value}</option>)
+                            }
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-white mb-1">Min Price</label>
-                    <input
-                        type="number"
-                        name="minPrice"
-                        value={query.minPrice}
-                        onChange={(e) => setQuery([{ name: 'minPrice', value: e.target.value }])}
-                        className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Enter minimum price"
-                    />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-white mb-1">Max Price</label>
-                    <input
-                        type="number"
-                        name="maxPrice"
-                        value={query.maxPrice}
-                        onChange={(e) => setQuery([{ name: 'maxPrice', value: e.target.value }])}
-                        className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Enter maximum price"
-                    />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-white mb-1">Sort By</label>
-                    <select
-                        name="sortBy"
-                        value={query.sortBy}
-                        onChange={(e) => setQuery([{ name: 'sortOrder', value: e.target.value }])}
-                        className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Select Sort</option>
-                        <option value="asc">Price (Low to High)</option>
-                        <option value="desc">Price (High to Low)</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-white mb-1">Search </label>
-                    <input
-                        type="text"
-                        name="categoryName"
-                        onChange={(e) => setQuery([{ name: 'searchTerm', value: e.target.value }])}
-                        className="w-full px-3 py-2 border  rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Searching"
-                    />
+                    <div>
+                        <label className="block text-sm font-medium text-white mb-1">Min Price</label>
+                        <input
+                            type="number"
+                            name="minPrice"
+                            value={query.minPrice}
+                            onChange={(e) => setQuery([{ name: 'minPrice', value: e.target.value }])}
+                            className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter minimum price"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-white mb-1">Max Price</label>
+                        <input
+                            type="number"
+                            name="maxPrice"
+                            value={query.maxPrice}
+                            onChange={(e) => setQuery([{ name: 'maxPrice', value: e.target.value }])}
+                            className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter maximum price"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-white mb-1">Sort By</label>
+                        <select
+                            name="sortBy"
+                            value={query.sortBy}
+                            onChange={(e) => setQuery([{ name: 'sortOrder', value: e.target.value }])}
+                            className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option value="">Select Sort</option>
+                            <option value="asc">Price (Low to High)</option>
+                            <option value="desc">Price (High to Low)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-white mb-1">Search </label>
+                        <input
+                            type="text"
+                            name="categoryName"
+                            onChange={(e) => setQuery([{ name: 'searchTerm', value: e.target.value }])}
+                            className="w-full px-3 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Searching"
+                        />
+                    </div>
                 </div>
             </div>
-           </div>
 
 
             {/* Products Table */}
@@ -231,7 +250,7 @@ const ManageProduct = () => {
                                             onClick={closeModal}
                                         >
                                             <span className="bg-transparent text-black  h-6 w-6 text-3xl lg:text-4xl block hover:text-red-500 outline-none focus:outline-none">
-                                            <RxCross2 />
+                                                <RxCross2 />
                                             </span>
                                         </button>
                                     </div>
