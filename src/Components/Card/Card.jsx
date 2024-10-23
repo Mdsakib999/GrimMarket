@@ -31,10 +31,10 @@ const Card = ({ data }) => {
         <div className="h-full">
             <Link
                 to={`/details/${_id}`}
-                className="border inline-block border-red-500 mt-20 mx-4 h-[210px] w-[200px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B]"
+                className="border inline-block border-red-500 mt-20 mx-4 h-[240px] w-[200px] rounded-lg relative overflow-hidden bg-gradient-to-r from-[#1a2531] to-[#10192B]"
             >
                 {/* Product Image */}
-                <img className="w-full h-[90px]" src={image} alt={title} />
+                <img className="w-full h-[110px]" src={image} alt={title} />
 
                 {/* Product Information */}
                 <div className="px-3">
@@ -64,7 +64,7 @@ const Card = ({ data }) => {
                             e.preventDefault(); // Prevent navigation
                             handelByNow(data);
                         }}
-                        className="flex items-center justify-between ps-3 py-1 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white text-sm"
+                        className="flex items-center justify-between ps-3 py-2 hover:bg-gradient-to-r from-[#62c750] to-[#02a92f] hover:text-white text-sm"
                     >
                         <span>Buy Now</span>
                         <FaAngleRight className="text-lg ml-1" />
