@@ -25,10 +25,5 @@ export const adminNavData = [
         title: 'Menage Category',
         link: '/admin/menage-category',
     },
-    {
-        id: "4",
-        title: 'Menage Sub Category',
-        link: '/admin/menage-subcategory',
-    },
 
 ]

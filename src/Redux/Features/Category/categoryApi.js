@@ -55,6 +55,15 @@ const categoryApi = baseApi.injectEndpoints({
         };
       },
     }),
+    updateSubCategory: build.mutation({
+      query: ({ payload, id }) => {
+        return {
+          url: `/category/update-subCategory/${id}`,
+          method: "PATCH",
+          body: payload,
+        };
+      },
+    }),
   }),
 });
 export const {
@@ -64,4 +73,5 @@ export const {
   useUpdateCategoryMutation,
   useCreateSubCategoryMutation,
   useDeleteSubCategoryMutation,
+  useUpdateSubCategoryMutation,
 } = categoryApi;
